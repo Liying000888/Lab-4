@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab 4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lab 4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lab 4_files/libs/quarto-html/quarto.js"></script>
+<script src="lab 4_files/libs/quarto-html/popper.min.js"></script>
+<script src="lab 4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lab 4_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lab 4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lab 4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lab 4_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lab 4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lab 4_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="lab 4_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="lab 4_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="lab 4_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="lab 4_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="lab 4_files/libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="lab 4_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="lab 4_files/libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="lab 4_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="lab 4_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="lab 4_files/libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="lab 4_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="lab 4_files/libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">lab 4</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>#Name: Liying Deng</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'data.table'
+
+The following objects are masked from 'package:lubridate':
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+The following objects are masked from 'package:dplyr':
+
+    between, first, last
+
+The following object is masked from 'package:purrr':
+
+    transpose</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Question 1</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"met_all.gz"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://raw.githubusercontent.com/USCbiostats/data-science-data/master/02_met/met_all.gz"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">destfile =</span> <span class="st">"met_all.gz"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method   =</span> <span class="st">"libcurl"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">timeout  =</span> <span class="dv">60</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>met <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">"met_all.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Question 2</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>met <span class="ot">&lt;-</span> met[met<span class="sc">$</span>temp <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">17</span>, ]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>met[met<span class="sc">$</span>elev<span class="sc">==</span><span class="fl">9999.0</span>, ] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>met[,date<span class="sc">:</span><span class="er">=</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(year, month, day, <span class="at">sep=</span> <span class="st">"-"</span>))]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>met_avg <span class="ot">&lt;-</span> met[,.(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">temp     =</span> <span class="fu">mean</span>(temp,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rh       =</span> <span class="fu">mean</span>(rh,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind.sp  =</span> <span class="fu">mean</span>(wind.sp,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">vis.dist =</span> <span class="fu">mean</span>(vis.dist,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dew.point =</span> <span class="fu">mean</span>(dew.point, <span class="at">na.rm =</span> T),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">lat      =</span> <span class="fu">mean</span>(lat),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">lon      =</span> <span class="fu">mean</span>(lon), </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">elev     =</span> <span class="fu">mean</span>(elev,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>), by<span class="ot">=</span><span class="fu">c</span>(<span class="st">"USAFID"</span>)]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>met_avg[, region <span class="sc">:</span><span class="er">=</span> <span class="fu">fifelse</span>(lon <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">98</span> <span class="sc">&amp;</span> lat <span class="sc">&gt;=</span> <span class="fl">39.71</span>, <span class="st">"NW"</span>,   </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>               <span class="fu">fifelse</span>(lon <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">98</span> <span class="sc">&amp;</span> lat <span class="sc">&lt;</span> <span class="fl">39.71</span>, <span class="st">"SW"</span>,       </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>               <span class="fu">fifelse</span>(lon <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">98</span> <span class="sc">&amp;</span> lat <span class="sc">&gt;=</span> <span class="fl">39.71</span>, <span class="st">"NE"</span>,     </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"SE"</span>)))]  </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>met_avg[, elev_cat  <span class="sc">:</span><span class="er">=</span> <span class="fu">cut</span>(</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">x      =</span> elev,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="cn">Inf</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"med"</span>, <span class="st">"high"</span>, <span class="st">"very high"</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">right  =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Question 3</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>met_avg <span class="ot">&lt;-</span> met_avg [<span class="sc">!</span><span class="fu">is.na</span>(wind.sp)<span class="sc">&amp;!</span><span class="fu">is.na</span>(dew.point)]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(met_avg)<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span>wind.sp, <span class="at">fill=</span><span class="st">"wind.sp"</span>))<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span>dew.point, <span class="at">fill=</span><span class="st">"dew.point"</span>))<span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-4_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="each-region-exhibits-distinct-characteristics-leading-to-variations-in-wind-speed.-the-southwest-region-in-particular-has-significantly-higher-dew-point-levels-compared-to-other-regions-with-a-relatively-large-range-of-variation." class="level1">
+<h1>Each region exhibits distinct characteristics, leading to variations in wind speed. The Southwest region, in particular, has significantly higher dew point levels compared to other regions, with a relatively large range of variation.</h1>
+<p>#Question 4</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>met_avg[<span class="sc">!</span><span class="fu">is.na</span>(wind.sp)<span class="sc">&amp;!</span><span class="fu">is.na</span>(dew.point)] <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dew.point, <span class="at">y =</span> wind.sp, <span class="at">color =</span> region, <span class="at">linetype =</span> region)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">"Blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-4_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>#The dew point increases, the wind speed tends to remain relatively constant or decrease slightly</p>
+<p>#Question 5</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>met_avg[<span class="sc">!</span><span class="fu">is.na</span>(elev_cat) <span class="sc">&amp;</span> elev_cat <span class="sc">!=</span> <span class="st">"clear"</span>] <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> elev_cat, <span class="at">fill =</span> region), <span class="at">position =</span> <span class="st">"dodge"</span>)<span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"the weather stations by elevation category"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x=</span><span class="st">'elev_cat'</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span><span class="st">"number of weather stations"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"Region"</span>)<span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-4_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>#The graph reveals a clear preference for placing weather stations at medium elevations across all regions, particularly in the NW and SE regions.</p>
+<p>#Question 6</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>met_avg[<span class="sc">!</span><span class="fu">is.na</span>(elev_cat) <span class="sc">&amp;</span> elev_cat <span class="sc">!=</span> <span class="st">"clear"</span>] <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> dew.point,<span class="at">fill=</span><span class="st">"dew.point"</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.data =</span> <span class="st">"mean_sdl"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span><span class="st">"bar"</span>)<span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> dew.point,<span class="at">fill=</span><span class="st">"dew.point"</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.data =</span> <span class="st">"mean_sdl"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span><span class="st">"errorbar"</span>)<span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> wind.sp,<span class="at">fill=</span><span class="st">"wind.sp"</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.data =</span> <span class="st">"mean_sdl"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span><span class="st">"bar"</span>)<span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> wind.sp,<span class="at">fill=</span><span class="st">"wind.sp"</span>),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.data =</span> <span class="st">"mean_sdl"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span><span class="st">"errorbar"</span>)<span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mean Dew point and wind speed by region"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span><span class="st">"Region"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span><span class="st">"mean value"</span>)<span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in stat_summary(mapping = aes(x = region, y = dew.point, fill =
+"dew.point"), : Ignoring unknown aesthetics: fill</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in stat_summary(mapping = aes(x = region, y = wind.sp, fill =
+"wind.sp"), : Ignoring unknown aesthetics: fill</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-4_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>#The SE region exhibits the highest humidity levels, while the NW region is notably drier and calmer.</p>
+<p>#Question 7</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorNumeric</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"YlGnBu"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">domain =</span> met_avg<span class="sc">$</span>rh,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>rhmap <span class="ot">&lt;-</span> <span class="fu">leaflet</span>(met_avg) <span class="sc">|&gt;</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(<span class="st">'CartoDB.Positron'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircles</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>lat, <span class="at">lng=</span><span class="sc">~</span>lon,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span><span class="fu">paste0</span>(<span class="fu">round</span>(rh,<span class="dv">2</span>), <span class="st">' C'</span>), <span class="at">color =</span> <span class="sc">~</span><span class="fu">pal</span>(rh),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="dv">1</span>, <span class="at">fillOpacity =</span><span class="dv">1</span>, <span class="at">radius =</span> <span class="dv">5</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(<span class="st">'bottomleft'</span>, <span class="at">pal=</span>pal, <span class="at">values=</span>met_avg<span class="sc">$</span>rh,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">'Relative Humidity'</span>, <span class="at">opacity=</span><span class="dv">1</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>top_10 <span class="ot">&lt;-</span> met_avg <span class="sc">%&gt;%</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(rh)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>rhmap <span class="ot">&lt;-</span> rhmap <span class="sc">%&gt;%</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addMarkers</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> top_10,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        <span class="sc">~</span>lon, <span class="sc">~</span>lat,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(USAFID, <span class="st">"&lt;br&gt;RH:"</span>, rh, <span class="st">"%"</span>),</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">label =</span> <span class="sc">~</span>USAFID</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>rhmap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-f6e60452c09574015388" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f6e60452c09574015388">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircles","args":[[34.29982258064474,30.78399999999968,42.54300000000195,32.21746810146003,41.4250000000017,30.38303998203162,38.582999999999,37.18600000000117,34.54499999999914,33.63600360144017,40.74700000000177,46.41699064171181,45.41700000000104,46.68276130199033,31.39703638813899,46.61900000000293,33.17500000000139,34.09999999999943,32.91500000000001,41.27499999999906,38.95500000000136,30.98219467554093,27.20700000000065,32.21300000000053,48.4671652447247,28.97299999999952,34.27300000000067,41.73600000000133,26.44200000000084,35.25599999999982,36.6870000000006,34.60199999999926,36.01799999999794,43.67699999999873,42.57410442046349,37.520999999999,32.44400000000138,33.71399999999995,36.36104490413657,33.52999999999916,32.7470000000005,42.45303974706291,33.77995959595874,32.08395499738453,30.88599999999902,37.23900000000106,31.86899999999941,32.45599999999923,32.64596093399178,30.87200000000138,40.10139919173858,33.25404041311254,38.95999598393507,34.86099999999972,41.19600000000076,40.94700000000011,33.09599999999977,41.39999999999907,35.61317610062759,31.77999999999918,36.41395911949667,27.77900000000079,38.39800000000077,33.11027974854105,39.0160000000019,32.35400000000001,45.65399999999804,48.29904220924954,30.2430000000008,40.43499999999826,42.21899999999837,44.8920000000023,39,38.60700000000222,33.89800000000018,39.1670334346511,32.14952941176448,44.62588842024622,35.86403875619754,44.33299999999899,42.73200000000234,42.79595867026156,30.75006280720906,33.59799999999933,33.15400000000022,41.22599999999942,36.61099999999991,34.6988771929818,39.60060913705652,35.53800000000039,35.94999999999854,35.47287488667199,35.27499999999984,31.04299452054848,31.84600000000037,42.06999999999974,45.37200000000222,43.98699999999974,43.74296005154589,41.96000000000232,28,27.91599999999988,34.22900000000045,35.63326574803234,41.03273936651642,36.8550000000005,30.29096093399077,30.70388943731554,38.96699999999999,39.79980699364368,45.11699999999857,47.10383460674369,31.0559999999985,34.85031266846366,34.0999999999995,28.9501671910101,39.2167566471384,35.60000000000012,33.84999999999911,41.4122067415711,38.14999999999947,39.92824079320107,39.98299999999826,36.42180459770145,41.82799999999905,34.26699999999984,40.33299999999898,43.43300000000155,39.42799999999989,37.1580000000002,37.44996101541094,39.76678610108466,36.66499999999945,37.57799999999948,37.63300000000127,38.0666572982773,37.75099999999948,30.81686203208632,30.55799999999917,36.89999999999966,46.21707497741707,44.56699999999913,44.88368924302903,44.9330000000009,37.40000000000053,36.78291620111755,37.85000000000017,41.82399999999832,41.44405553047585,43.54799999999916,38.7034286359528,38.23871165644266,38.78300000000006,38.53300000000008,40.03319284744217,40.01700000000047,40.33304092976156,40.56707726864285,40.167000000001,37.28300000000022,34.38300000000124,30.5,41.30027697841889,40.61683730336961,41.38400000000051,39.18341899441355,35.43292093441137,36.1746731028305,41.55199999999993,40.03100000000159,38.53300000000004,32.15000000000092,32.71708441849942,40.61699999999873,26.96699999999907,42.68324556616711,29.97600000000084,44.7829999999995,30.46004656084584,41.33299999999898,29.71699999999866,34.30000000000121,34.5,33.18299999999942,34.78300000000053,33.64995996360355,33.25029282027224,34.2830000000006,33.71699999999878,34.71699999999945,32.70100000000062,34.71723129251647,34.18099999999837,32.9171521739139,34,32.41153615279504,33.82804162768977,38.90899999999968,38.03286724452568,36.5330000000008,29.80000000000121,44.01600000000249,36.75,35.88300000000125,35.2830000000005,35.48299999999936,43.66300000000042,34.61728704939821,33.06300000000056,34.40012298682331,34.31500000000106,35.30007716750032,38.3502779661019,29.5002510121458,44.09500000000092,30.53300000000128,43.23500000000052,33.41711106094892,38.71727425968096,37.51300000000322,31.10599999999979,30.3949999999987,36.33000000000131,40.22500000000102,38.35573170731691,28.86699999999883,30.73500000000049,31.55399999999856,29.46700000000011,33.63291558150097,39.60799999999841,41.052,40.20399999999893,33.91199999999819,29.11699999999923,28.64326741572866,28.04854309165429,28.5,43.5810000000009,30.34921364985097,41.0660000000012,47.45100000000071,30.90200000000056,32.64599999999984,35.94700000000011,34.81666977509704,33.43299999999959,31.84100000000032,31.64096088129652,32.30399999999872,39.66704363803499,38.94600000000064,48.88400000000133,46.92500000000183,48.78399999999967,34.68899999999886,48.47999999999927,44.25100000000018,48.92900000000042,48.38099999999819,35.93699999999985,48.40499999999906,47.28999999999814,48.38999999999947,47.79600000000122,46.7679999999981,46.11719647696361,43.06699999999845,38.69999999999885,29.06700000000101,48.30100000000229,46.9419579332408,27.83299999999911,27.63019293286208,29.29599999999962,48.72599999999874,34.91500000000004,30.07100000000163,34.30000000000107,40.27999999999911,45.50599999999845,31.60599999999979,46.21799999999809,41.23336314606558,32.52099999999987,40.36788315894294,30.61681514878157,32.11003776978469,37.9740000000009,32.60899999999836,26.9332292134822,29.11703997039142,40.71099999999971,32.21400000000057,30.03300000000027,32.43253113553173,33.22699999999926,30.71800000000064,35.69999999999852,42.51700000000207,35.17799999999989,41.57200000000011,35.3799999999998,31.68400000000027,30.8790000000007,31.88500000000021,28.22800000000101,32.93099999999841,39.33200068540152,30.17276280323549,29.6339999999987,44.47654362837221,46.24400000000158,43.6209364161843,43.45900000000178,27.81199999999953,24.55554445385292,28.29000000000062,28.47399999999926,24.58297729729707,24.72599999999973,25.78033912324258,28.01400000000039,26.37800000000017,25.90699999999952,25.48323364485996,25.64800000000018,26.68476593720314,34.26900000000021,44.07394877606327,44.7529999999978,26.91700277008356,25.99900580270775,26.15499011857681,26.1970000000001,28.10100376293465,29.44499999999974,32.74199999999878,34.80399999999911,28.51689814814802,26.24998832684825,28.43386985018765,34.39800000000075,36.77300000000076,28.54499999999923,35.13499999999958,29.16727631579002,28.77999795291677,42.69004039455272,30.49260500807763,39.467129496403,31.47704147880905,30.23302122641525,30.39998992161296,30.21899999999999,30.40000000000054,32.13123091247728,35.09604086214643,34.9760000000003,38.08900000000156,41.93192362982987,40.1999537286597,34.47099999999998,35.78100000000143,32.89921819788015,39.41705631659136,42.24599999999926,32.48299395161306,40.93319334532434,31.88324858757136,36.29396003592274,36.60508093525218,44.68000000000026,32.69900000000042,36.68201406799578,35.9765714285714,41.58400000000152,40.96000000000123,35.72400000000085,37.44999999999844,27.49799999999966,27.76499999999961,26.58500530035273,32.67500000000137,26.53600000000005,34.31626310483957,27.96307095709553,32.69899999999991,30.16900000000107,27.40072080292041,27.91100000000005,27.07200000000011,27.99947567030783,29.63408304794487,32.6929999999994,27.94970162381573,40.14912123933609,43.43300000000157,41.53979344409399,41.11918059299129,35.48299999999934,46.83900000000404,31.24996362819935,35.54099999999868,35.38990557129327,35.43799999999957,32.1929999999994,31.25899999999903,31.15199999999918,30.36800000000026,30.39903917910449,36.02300000000076,44.52300000000038,32.57899999999916,45.23647302100342,45.4260000000031,31.08307553956746,35.41700000000097,41.3519999999992,41.34999999999914,36.43766966696722,34.72200000000002,39.21712662775042,34.12299999999965,40.52000000000009,26.17899999999869,31.53600000000005,35.66800000000026,34.97899999999949,30.78299999999972,38.24700000000167,44.77899999999845,31.3829622471922,32.68799274778403,40.92399999999932,39.69999999999835,34.16703638814113,32.63323856502321,33.31200000000013,35.1950000000009,35.02104009111567,45.14991568449552,33.36431941031996,33.46700000000003,41.89299999999768,45.82300000000031,34.27200527426222,35.35703951504472,35.21195751295307,27.18200000000047,33.63248269040582,33.92899999999838,32.4727575213285,36.28500000000199,40.29303818508622,33.77899999999956,33.87500438116101,33.35500637619516,36.19999999999848,35.92899999999924,29.73298239436636,35.58207992477669,29.21100000000123,42.04600000000112,28.65400000000082,30.48300000000016,41.96392525889446,29.95899999999969,28.82100571428563,35.85799999999887,30.77999825327462,32.56399999999888,38.53324550359719,41.03704612364881,30.47799490834971,30.35013593256007,30.71706268656752,30.68746031745978,31.66599999999888,30.62600527983123,31.34989843749912,31.3559999999998,42.2419999999987,34.89100000000171,38.98099999999979,30.65000000000072,40.62400000000085,30.13100000000078,39.53100000000158,32.34908882720253,32.51400000000061,44.72952380952573,32.75573852573051,32.51599999999968,42.09807906558763,32.30000166527896,27.26684539325823,32.38300000000068,31.86099739357101,31.31701508011247,31.2672535211266,33.91692951541904,40.6840000000002,31.30900000000045,31.41600000000037,34.65299999999928,33.56599048625754,32.61596270396343,33.96719375000036,33.21199999999969,33.58701271186412,40.94807039711191,33.17799797570839,29.99530843840897,30.52104537286644,30.03800000000028,30.04894781682627,29.81739569892417,31.73599999999926,30.53697965412025,37.0329618149149,31.41715087561826,32.03604086214587,29.71672243713764,30.34300189214812,42.47082831050311,45.46899999999835,38.09713179026902,30.83295999999905,27.34903778677512,32.33478756476617,29.29620481927726,44.24899999999982,42.35099999999834,32.55000929368001,42.9918556149743,31.46700000000011,32.3201798209931,29.26532644813798,32.33699793388401,32.23325519848768,31.61686644951077,31.18298176845996,29.05410276679848,33.16673270440343,29.94700000000011,34.6809999999984,38.7830000000001,35.55000000000149,27.91700000000061,31.04972916666619,30.12660423452784,30.2100413290107,30.20500000000074,29.5660600480379,29.95088756855603,29.7089920239279,29.27298290598313,29.51899329608957,30.06798006644474,29.9782764578831,29.61647058823512,29.63800825471689,30.35698913043475,31.23598952879636,30.74400346820777,32.35399999999959,32.03098203592802,32.38499507995031,32.66400000000043,32.4476858736061,32.54297879858703,32.50007061503418,32.51595843230372,31.39499999999991,32.34999999999952,32.70999655568252,31.57800000000051,26.22800120192257,26.18400000000008,26.16599999999999,27.77517299578085,27.68306165228169,27.50003369434416,27.74100000000064,27.90004973356992,27.53350253807077,29.33899999999995,28.08401611170763,28.45699999999978,29.10999889867877,29.5415094170409,29.36000000000036,29.38304795204857,29.53288374052219,29.98276819407008,29.8910888450145,30.19759270516769,33.18992592592551,30.7409899117282,29.62199999999962,30.32099671052623,30.67900000000008,28.85972458410395,33.65099999999922,28.72500306435092,31.61870434782566,31.48500000000032,31.13372121212169,31.06699999999937,31.15014214463875,32.85198067010293,33.63315650172677,33.0679999999994,33.20598205741564,32.89847267497647,32.56500000000027,32.97305625000065,32.76701254705129,32.78199999999951,32.96899999999975,32.68100000000027,32.21499999999817,29.37647651006738,29.36666240409173,30.04798655913967,30.91202506265684,31.83099741602018,31.3540535117054,35.89979775280878,30.37099999999955,31.92099999999958,31.94825742574287,31.77999999999978,32.41182300884967,31.79975527039548,33.66383187772963,32.85300000000123,35.00299634146381,36.74100665188561,33.3069174705257,33.45051717902211,34.38357671382007,32.33400750938654,32.69277070499599,34.43252437574372,32.19981132075338,38.58588409703494,32.83999999999815,32.2832991913756,31.80841706161178,33.23648117154838,31.45801279069728,32.63316326530725,32.26199999999969,31.4209896073898,31.58781116584596,32.14374152542403,32.16694949494993,32.85499999999963,32.95047019867588,33.26900000000014,35.65799261083708,33.42871396895787,33.46687450980423,33.68799999999996,33.5492533185836,33.30044057970985,33.52732779097392,33.41731967213094,33.62299999999966,32.81712499999941,31.60672635561159,38.76175558867351,31.39990683229867,31.02475588865153,48.94100000000198,33.89922250639425,33.82203162055347,33.95200000000025,34.02396717467803,34.20100000000011,34.01599999999969,34.2099999999994,34.09958878504695,34.66695577395647,35.23700000000034,33.97499999999962,32.73387902439048,32.81599999999963,32.57200000000011,32.82600000000041,32.56699999999968,33.02300000000023,33.30005844845859,33.12800000000043,33.28600000000005,32.86705177993462,33.21899595551089,33.93738927507394,35.0666286764709,33.80299999999989,33.92299999999959,33.81266532663373,39.16295953237443,33.79000000000063,33.87199999999959,33.67998208286698,35.74199902056725,34.26781231002961,35.17392563739328,35.03310823258612,34.99100000000099,34.73300090090106,35.91708390332974,35.7649999999995,35.88889689689666,35.63308032861819,35.34384992101053,35.31802307692332,35.85500000000005,34.83288625592353,36.26099999999933,36.02804081632657,36.81713422818729,36.29800000000002,36.90237203389773,36.69799999999945,37.70800101214512,36.9370067039114,37.13200000000009,37.1330000000008,34.90000429553341,35.06800452079514,34.70799999999937,34.68322818791982,38.52700000000082,33.94296477495067,33.97098637911508,33.96472473118315,34.18799110671871,33.58699999999961,34.79200000000061,33.94821955555535,38.00999999999934,33.46198927038598,34.46527112232057,34.98700190114106,34.67199999999939,34.84600847457678,34.88753043478195,34.75800000000095,46.1501653358372,34.24899999999989,35.23300000000016,35.2225696517411,35.23700000000033,35.42799999999989,36.43200000000061,35.19700000000011,35.8209592252817,35.43210022107637,35.64599999999939,31.53600000000005,36.22299999999927,36.09398429319427,34.98813154689442,36.04699999999934,36.46000000000056,34.49799666295849,36.13399999999905,35.01700391006827,34.34823909090947,34.64466920152116,34.67900000000008,34.74400513874563,35.033876257545,35.55399999999919,35.95100000000035,35.81777621145332,36.14421473495013,36.0089999999991,36.05599999999828,36.62399055712974,35.35048234280719,37.22499999999935,36.77300000000044,33.65000000000084,33.45000000000012,34.26260552995378,35.05472241379286,35.59302443281035,36,36.47998888888851,34.72702244668879,34.91703931451669,36.125,35.83100099700811,35.96685164835155,35.93999999999969,34.29020568927853,34.59999999999945,34.17998414496061,33.45400000000053,33.22100000000035,33.61723492349118,35.25800323974156,36.16741779497097,34.54701323918728,36.28299714828908,36.3689999999994,35.33300330851873,41.72995850248057,36.19103623898086,36.3498527363177,36.00998956158607,36.29100000000007,35.72599999999971,36.37200000000017,36.26699085086901,36.87800000000003,37.15199999999948,33.9775099268544,34.65065779927496,34.98900291120838,35.35697999999998,34.34401972873012,35.38771937445727,36.33319111969047,36.38284500745256,35.85199044205466,35.41690238611771,35.53399999999971,36.16198668032785,34.65000000000055,34.3000473684215,35.65699999999945,36.19911460258812,36.03900108695697,36.76799458483686,34.88200000000056,35.24976744186042,34.558095124852,36.44911121951254,34.06513513513548,35.16508072562327,36.39899999999996,35.51398117942231,31.17804032623462,30.06900000000144,35.22709903593359,35.6950279069765,35.14500000000017,35.03993029739827,35.88286786516978,35.61699999999934,36.74399999999962,34.42699999999973,36.45037346437394,35.18200125000045,35.65399999999951,35.25925984252026,36.92699079401591,34.65200501881988,35.02682890173352,34.256999999999,34.26403989120622,35.14210920770898,34.51800124223605,34.84994701670611,45.4970000000019,33.90899999999968,30.51595689268225,34.60700000000205,35.94603076923068,35.15699999999936,34.76799739583335,34.90093150684977,34.85399999999959,34.74100000000067,34.62900000000053,34.74477461139866,35.43385714285755,36.07359371492707,36.6204328358203,36.7781265822781,37.63243492209106,36.31710752688112,36.31899463806942,34.11701125703483,34.42599999999965,34.21699193548413,34.20100000000033,34.71799464422373,34.8990882352938,35.6700111111104,38.3410000000003,40.19599004424806,36.66599999999863,36.68200000000061,37.5104769999999,37.18302937420099,38.13701206030143,37.35799999999863,36.98300371747228,37.93655871886136,37.64699999999854,38.94075891996147,38.26700000000152,38.50399338478561,38.72100000000022,38.71693305439327,38.2999835680746,38.80399999999887,38.84763590177874,39.14304183535546,39.07799999999927,36.89499999999968,39.47171061093236,36.68315274034152,39.1742430278885,39.70602337938274,39.33226463512365,39.45179794520507,39.94099999999941,39.36600198807263,41.00899999999917,39.87420271580969,40.18311034482757,40.07900000000025,39.13290349264797,40.03299999999966,38.68999500997992,40.87599795500976,40.27699999999962,40.0169680483591,40.79994362934438,37.32231214953315,38.26399999999985,36.57299999999994,36.76600000000182,37.31701654601825,37.20799999999901,37.9500385542154,37.13316539325961,36.98799999999879,36.68799999999939,37.78397907188331,37.29800000000007,37.86667056430994,38.37611070110727,38.88497238372138,39.29603864278973,39.64299999999939,39.40397266514769,39.67400495540102,37.59099902439055,40.82000315126026,39.04476238624955,38.04005071770325,38.18145837231029,38.18499019607881,38.22799999999943,37.74961716937355,37.80029452736318,37.90031426056415,37.08699507389132,38.36544934640487,36.02299363057362,39.34023678414079,40.17599807877003,39.59398915401299,39.99214300100797,39.90004705882451,39.81679668049853,39.94400000000019,41.56300646551684,40.07800457142922,39.89729873646228,39.75600000000065,39.8399999999998,39.43099356223171,39.10299999999999,40.70799999999934,41.03800000000032,38.04468480300275,38.64973270440185,38.32299999999933,37.7799979253107,38.54954154727812,37.75020777479896,38.75262388059691,38.65701067235803,37.05730931796331,37.05396048495671,39.57800542888232,39.26680337078636,38.24900000000022,39.452,39.13301336074084,39.72671275646682,39.8250129310346,40.11661012658119,40.41199999999976,40.52799999999917,41.53298652550575,39.84500000000052,38.88334210526413,40.48270068027229,37.2392192028987,38.13197965412026,39.93702521008446,38.81701033591757,38.70400290416281,37.76099999999937,40.09699086294501,37.74962157048249,38.59100000000029,38.09600000000007,39.29406287170719,31.30700000000056,39.12100207468818,39.82293967828443,38.71760629067254,38.84999617590746,38.83199902723723,39.77398440545804,37.64824212598473,37.16800211640255,37.74600587084087,37.61713354281128,38.0650048216007,37.66999636363533,39.00800814479732,38.06763147410311,37.76520160642586,37.92700423280427,37.04978384279438,38.34976789168199,38.84967238095162,37.09101699716744,37.28397869507295,36.73697963340158,39.05021646859134,39.1350112994349,38.32901473477428,39.07237176273949,38.9500009057968,39.55090103750966,38.87599626168166,38.79998272552797,37.00003668478263,37.43822246220248,37.14298500000002,37.95016418583517,38.04900598802372,38.06999999999976,38.28907716701959,37.26198207885261,37.28294158553514,39.36701503759306,39.37600276243028,38.80986363636413,39.27499378238414,39.56999999999976,39.22897791410998,40.04403136762937,39.64953636363692,39.22998243412761,38.53303826530577,40.51695951417192,38.67799999999989,39.24499593495947,39.78407096306999,39.71546633416484,40.16700884086512,39.90067394695868,39.6090258397936,38.41701994301983,28.81653507565434,38.42650122149627,37.09993150684902,37.70894968553427,37.70599999999923,39.13154809843308,38.50602108036932,37.30698980891766,40.43604092071674,40.45009122006861,39.60099601593581,38.75002666666666,41.78701574803171,38.41700000000059,37.37043843498213,37.38278117647042,37.28499999999987,38.37799462365631,38.50702432432477,38.56630693069253,38.66704518752923,39.13315000000068,39.10197849462339,38.69599327956981,36.21199868938375,38.05101176470556,39.2957174638479,39.48630171428582,39.41700000000048,36.58799505766135,37.89057749712936,37.62400805369109,37.69299999999954,37.72100000000051,37.46677235772373,37.51675555555541,37.6195828988528,37.35900505050537,37.33300000000016,37.9919871299865,38.21000663716749,38.50402157497364,39.79976586102793,37.06399999999883,42.5710000000005,41.07300000000027,41.50899999999889,40.82200000000011,40.6850592885375,33.85714855570778,40.84999999999932,41.50999905571293,41.48285685071588,40.77986749116643,41.62599999999948,41.06699999999957,41.50015405046484,41.15902187784925,41.264,41.32800733945034,40.77901359832628,41.92100000000005,42.47000000000057,41.25270289854999,41.65046217331549,41.90999717247961,41.6759999999996,41.39299999999868,41.66900000000101,41.8759999999988,41.68800000000007,41.72416495806166,42.07200000000011,41.59699999999984,42.69699803149617,41.53299910394329,41.93739764936318,41.74199999999898,42.56999999999974,41.37100306748403,41.73601042752861,42.58400000000023,42.36226903114123,42.19099999999936,42.27099591002094,40.37307484407449,41.62599999999959,40.82100000000084,42.55200000000026,40.23800578034666,40.33000916497044,39.91799895506814,40.12000392156888,40.13309337349482,40.21699999999994,41.04700471327485,40.77699999999999,41.17899915611704,40.29599999999996,40.31599999999943,40.84995175438503,41.33379800498784,41.24374741379338,40.43304147031088,41.70103419593389,43.3500010172932,42.20627652464517,42.48344239631354,42.15900172860816,42.10899999999897,43.53286149003186,40.65000181323746,36.69501518218599,40.632960526317,42.7352005253947,43.11230918727851,42.6429872068224,43.23399999999951,40.4922513761471,40.76821397380142,40.35499599198426,40.28270382424822,40.61600000000099,40.91787309644687,41.34599370409238,40.87300196850358,39.3640000000007,43.33800000000141,40.47199388646384,40.02300680272165,42.15002045454538,41.40843214285776,41.5179999999997,41.56691577208969,41.25646041055688,41.21672500000032,41.33800000000041,41.77799999999904,34.59399999999858,42.08035570469885,41.80000000000081,41.3828685291711,42.93919543378938,42.24099999999931,43.10799434389156,43.11699999999909,41.71669129411791,35.01704807692292,41.96323171987584,41.91398711063366,38.57100000000015,40.04000000000067,39.83400655021826,39.47799999999984,40.66777901023889,41.74300000000013,41.4530011001107,40.97360088105707,40.64989523809601,40.23399999999988,41.61695561357615,41.7856164241165,38.76399999999984,41.50074360125716,42.41701582278549,41.60413066906322,41.70818511450381,41.71701374570455,41.58654147250661,41.01399999999985,42.22785045045016,42.09900000000122,42.22300000000018,42.4089999999997,42.23315855039651,42.60816455696218,42.6291082474234,41.81656737588501,42.9109999999967,44.0219946308731,47.4670040322582,42.7749142572284,42.74599419729142,42.26697154471529,42.30800000000006,41.86799999999987,43.32200000000011,43.77999999999907,45.01299999999956,45.98229302325267,41.92100000000134,41.93300000000152,42.2510000000004,43.71770064124318,42.5660000000024,41.94000000000126,40.78299999999995,43.62200000000212,42.19383716475043,41.13899702970312,41.46319417475662,41.88300592885469,41.4070000000014,41.27599999999901,40.46000000000117,43.07799999999884,42.74199999999868,41.53387499999978,42.11100000000005,41.63300648648735,43.07299999999982,41.67399999999931,41.10799673202631,41.69100000000124,40.75103792325049,42.04600000000111,41.01903835740087,42.39823529411824,41.99101794616261,41.83285539488254,41.00755721392919,42.22397308209889,43.27504157252474,41.9860000000005,42.43603806071702,40.72199999999927,42.5535716911757,40.65899999999967,42.77800000000094,43.15400792864239,42.04903839205004,41.36700652315606,42.68099999999806,42.5500694716246,41.29899999999932,41.01004014433813,43.20799999999898,42.59699999999913,41.25900000000056,41.70004623753246,40.63099886749773,41.30871839671126,40.85089141856414,40.89414959568742,40.89303908355578,38.14199999999984,40.3010000000015,40.96156669178671,41.62300081833024,40.60101030927873,40.7323138686133,41.764,40.07999725023021,41.11704707379064,40.60603908355785,41.43300489795865,42.57718511796806,41.98567482517438,41.44899999999836,41.43380357142834,42.47000000000091,42.39215406162533,41.09900375586847,41.12030698005622,41.11900000000109,40.78907460674186,40.20599433427662,40.50999604743068,40.45014009878606,42.05698483412376,42.83700433369415,41.15702554027546,41.31697581620261,39.84100542005341,41.8705600722667,41.18894927536122,42.87852542372823,42.79600236966782,42.90051148225522,40.49465965583179,40.44299228791726,40.48016850828715,39.52791064388899,40.77925371655046,40.21900000000024,41.5949986996103,41.19599999999992,41.1173698453601,42.81499999999949,42.06100913242084,41.2730077120826,43.60029024390177,42.91958758314781,46.14397300944688,43.5189894179896,40.06799163179872,40.72089267015752,40.82898433420429,40.90170137299726,40.61141015273911,39.27698937582925,39.31999999999974,38.89800267737643,37.65399999999956,44.88899999999954,43.50026384364826,42.48199999999998,42.54200927152371,42.14705481120629,39.12600000000018,40.15171085714236,40.51545894263191,36.66399727767678,40.97800000000052,41.77999999999927,41.78099999999973,41.3329479305736,41.49096073619724,42.37763358778654,42.59999999999919,42.16664387096831,42.0740000000004,43.20406807866951,43.0827974413639,43.27799999999906,43.643661900757,43.3940000000002,44.7980576923079,44.53300000000077,44.4499999999997,44.06679864636273,47.28600000000005,44.53400193610812,43.3439999999994,43.62599999999929,44.27000000000037,44.20399999999974,43.56721262458463,44.57600000000054,42.80500000000026,44.36800000000017,42.89983640383292,42.89399163568793,44.46778909740871,43.99100000000121,44.04994094488232,44.31612322274821,45.4619999999997,45.64800000000056,44.93600000000087,44.65000327510994,43.98898107255593,44.38500000000046,46.35047785234839,42.88299468085209,42.12600790861064,42.23500000000043,41.70299999999978,43.17049434737928,43.96300000000243,42.96699803343117,42.66500346020828,43.5330000000002,44.35976285494889,44.28210186513491,44.2672312867955,44.74100000000099,45.07098806479138,38.78002299368712,39.43002837837683,46.31100000000119,44.45018130311438,39.05000000000161,42.95434024896353,45.92799999999989,43.10907322175603,43.04099999999917,43.14004697986645,43.41719754768488,42.61500000000097,42.61719331742144,43.21199999999966,45.10099999999969,45.30807782805519,46.54899999999954,42.76099999999935,43.76900318809797,44.54981565771666,46.68903722196894,43.87900000000063,44.86699582027075,43.93333484162802,43.9666582278486,43.15600945626569,43.90579273084505,43.01900000000021,45.19899999999799,44.48348445595814,44.35900508130024,44.13282270270365,43.98399999999977,44.26576983435033,44.84957336343032,44.92899999999922,43.16712081448054,44.78244932162902,45.22810516432087,45.41899999999903,45.7090000000016,45.73255987717521,45.11784615384529,41.05299999999989,43.40101975850743,43.16400423728794,44.61400000000111,43.52199999999837,45.93200000000062,42.59500506072935,43.76900456621023,42.88700000000143,46.02599813258621,43.42604468764443,43.57863434343492,43.73300000000016,44.30022657054617,44.05098901098863,43.02100868621113,43.39097737983106,45.66899196787231,42.88107547169873,43.76696133093756,45.03200541271935,44.3949738348331,48.01600000000246,43.77400314465398,44.90499999999935,45.64400000000021,48.94100000000212,47.82199999999843,45.54300903954812,44.96899999999868,46.404979330708,44.54800000000017,45.86798730158741,46.70273157486233,44.45005847953215,44.38100795228697,46.44737416267805,44.6279999999999,44.58900000000375,45.56600000000192,43.98299999999679,44.31913569414122,44.12299999999967,44.85913067092441,46.28311290322429,44.63799802955617,45.06200000000023,45.14967040673301,45.94912467865994,44.83198952879584,44.88299904397805,45.14114577836234,44.93200220994527,44.21740879120849,43.64961047836066,43.64567532467562,44.07699999999907,43.68285732647957,45.4437873873868,43.64999999999856,44.01799999999741,44.85700000000147,44.48287727272515,44.04341749174859,44.14975000000084,45.15399999999885,45.60398951507162,44.33904819277104,44.3810000000006,44.76874166666682,44.54397300944749,43.96600000000029,44.51699999999985,47.13328606357052,45.69800000000075,45.55999999999841,45.54600524658971,41.80002224969056,44.51712215568848,42.58400127064771,43.0644105960258,44.68320664869822,45.80542642924143,47.04899999999964,46.35791990846698,45.78794458438318,45.69800479616284,43.56699658703053,43.64962815405107],[-116.1658225806437,-98.66200000000303,-83.17800000000641,-80.69979938508672,-88.41899999999669,-103.6830399820269,-91,-88.75099999999713,-94.20299999999904,-91.75599399759892,-122.9219999999977,-86.65000000000101,-123.817000000003,-122.9830000000022,-84.89499999999771,-93.30999999999801,-97.82800000000194,-82.81700000000096,-85.96299999999817,-85.83999999999713,-121.0810415224947,-84.63329284525929,-98.12100000000504,-101.5210483619313,-122.4162065559037,-95.86300000000362,-78.71499999999737,-83.65499999999894,-98.12870453524431,-81.60099999999726,-77.48299999999912,-78.5780372093022,-75.67100000000153,-92.17999999999471,-84.81099999999466,-76.76500000000284,-97.81700000000205,-96.67399999999922,-78.52899999999977,-82.51600000000262,-96.53095331874708,-91.9480000000022,-82.81599999999968,-97.09700000000099,-94.03500000000291,-76.71599999999697,-95.21795887850088,-96.91295383194861,-81.59599999999882,-96.62200000000249,-75.26692635833072,-97.58100000000353,-94.37099999999927,-86.55700000000066,-96.11199999999616,-91.51099999999876,-94.96104086214942,-92.94599999999802,-100.995427672961,-95.70600000000348,-100.7491226415131,-97.6909999999983,-77.45595925926217,-98.55499999999519,-87.64999999999648,-97.43400000000157,-84.51900000000022,-116.559999999998,-98.91000000000292,-75.38200000000244,-92.02600000000362,-91.86799999999661,-80.27400000000274,-87.72700000000384,-117.6019999999992,-77.16696656535049,-111.167470588236,-86.20100000000083,-98.42100000000167,-89.01999999999794,-95.5560000000029,-109.8060413297436,-92.68806280720653,-83.13899999999755,-83.24100000000119,-92.4911244175231,-83.73796106835889,-99.33808187134173,-78.76675634517856,-98.93299999999746,-96.77299999999551,-98.00574977334169,-96.67499999999957,-86.31200000000126,-86.61100000000056,-124.2899999999979,-94.74612439884949,-95.78300000000017,-111.097039948453,-85.59299999999548,-82.16400000000108,-82.44899999999727,-86.25599999999632,-91.16747834645764,-80.41686968325889,-84.85599999999978,-87.67199999999883,-87.0228894373157,-76.33300000000216,-105.7659227974593,-95.13299999999646,-122.2868346067461,-82.76727346205686,-102.3327264150994,-93.06600000000054,-98.51712539325737,-82.23291888237925,-92.45000000000285,-98.4829999999975,-96.10933078651421,-122.549999999995,-74.29238526912255,-75.86699999999855,-105.2900000000019,-94.1600000000029,-87.6000000000007,-82.51700000000008,-86,-101.0460373788666,-95.77799999999799,-94.73292203082585,-101.7998574007184,-88.37299999999972,-84.76999999999774,-84.3330000000032,-83.98288576609231,-82.63699999999798,-89.86690802138915,-92.09899999999629,-94.0169999999994,-97.63337488708355,-72.01700000000146,-72.23254050464888,-73.10000000000306,-77.51699999999984,-76.44997206703755,-76.88300000000143,-110.5560414414456,-106.8268334085741,-109.6900000000019,-106.0721440831121,-108.5631922290354,-108.0670000000035,-106.049999999996,-105.2172892711658,-105.0499999999979,-103.800163719047,-102.2672318059285,-105.1669999999949,-107.0499999999959,-89.54936297968118,-97.96700000000251,-85.066881294966,-103.2668373033697,-72.50599999999682,-119.7330465549368,-99.39976280323094,-96.15191827570838,-112.0620000000038,-86.25099999999736,-121.7829999999972,-94.85000000000288,-98.89195779074885,-74.24978532201705,-99.25,-90.44975443383633,-92.08400000000209,-88.54999999999758,-87.87699999999906,-86.66699999999648,-95.38300000000149,-81.63300000000143,-81.95000000000161,-80.03299999999793,-81.20000000000164,-81.68308007279192,-81.38318301267155,-80.56700000000136,-79.85046690070507,-79.95000000000148,-80.00299999999761,-80.85019274376738,-79.33500000000008,-80.6333043478276,-80.36699999999854,-80.63396134606556,-79.12200000000234,-121.3509999999974,-120.416911496344,-93.19999999999798,-95.8999999999963,-97.08600000000567,-97.35000000000373,-101.0329999999974,-95.10000000000367,-97.81700000000242,-84.26099999999873,-79.73305740987669,-80.27899999999998,-80.11708199121394,-81.10899999999741,-112.1997684975079,-93.68303970944076,-95.47700000000462,-121.2000000000049,-98.36699999999851,-93.62400000000322,-112.6831110609441,-120.7501175398633,-122.5009999999925,-98.19599999999802,-97.56700000000284,-77.63499999999878,-83.35200000000377,-119.5189105691059,-82.56714975191858,-101.2030000000022,-81.88300000000142,-81.21700000000048,-85.15008441849709,-77.00800000000145,-93.6890448369606,-84.53200000000402,-84.94099999999931,-89.55000000000184,-89.79422921348007,-95.87789466484499,-95.71604106497692,-116.5229999999939,-85.7882611275968,-86.18200000000066,-99.15100000000429,-83.88099999999638,-93.29800000000243,-114.861000000003,-82.70014152495875,-88.84899999999669,-99.40400000000265,-96.51403911870251,-90.41099999999517,-119.8759999999952,-104.5700000000048,-99.6210000000051,-103.9819999999968,-97.63200000000388,-86.00599999999632,-99.23600000000276,-90.85500000000276,-103.2969999999977,-102.8979999999948,-77.54700000000096,-97.3710000000048,-101.5810000000036,-100.0240000000031,-103.2539999999947,-100.8940000000002,-89.88296070460841,-83.26766866619431,-87.130000000002,-81.28303818508329,-102.4059999999962,-98.0180000000026,-91.98300000000042,-90.44999999999797,-88.84200000000092,-116.2950000000053,-88.60399999999986,-94.21599999999491,-90.51199999999915,-83.11499999999889,-91.98099999999978,-90.40900000000319,-100.2449999999971,-96.59972764045284,-94.30799999999734,-83.81735326357696,-81.46677817854126,-84.18900000000301,-92.69099999999878,-82.36999999999742,-94.68322921348035,-90.20001332346216,-86.375,-83.12799999999758,-85.53299999999896,-99.85019536019568,-84.27499999999661,-91.47899999999994,-79.5,-108.7829999999973,-86.06599999999935,-86.73500000000034,-86.24600000000379,-83.26999999999788,-96.9709999999975,-82.64699999999782,-82.15599999999804,-96.43499999999811,-94.30999999999837,-90.94068373764473,-104.3610408621488,-93.0165436283766,-96.6069999999975,-96.21625433525504,-83.44588998242402,-97.089000000005,-81.75397967823938,-81.43700000000072,-82.45400267857032,-81.68301945945916,-81.05199899699146,-80.33027708850254,-82.34500000000098,-80.10800000000016,-80.27999196787064,-80.38303894081123,-80.43300000000009,-80.09911322550037,-86.85800000000002,-93.5530000000052,-95.5560000000022,-81.99099999999957,-80.24099999999991,-81.77499999999959,-80.17100000000089,-80.64400188146777,-90.26099999999879,-95.49600000000468,-96.67100000000167,-80.79994907407381,-80.10801167315043,-81.324026217227,-96.14799999999529,-98.67000000000422,-81.332999999999,-90.23399999999799,-82.23258552631408,-81.24399283521018,-88.30404039455313,-81.69519224555862,-106.1499999999961,-82.86095852119252,-81.66709905660468,-81.41700895856756,-81.87604333333366,-86.47199702970239,-81.20176908752345,-97.96608172428708,-78.36401229823328,-88.12299999999966,-88.70807637017461,-87.59981491464853,-97.95135563538489,-80.30400000000168,-80.03925441695989,-77.3824931506863,-89.58199999999681,-80.71700604838675,-90.43292266186798,-81.56679284369091,-95.4790399640758,-94.7380404676295,-84.72900000000169,-97.04700000000008,-101.5050140679956,-115.1320816326525,-95.33903971119589,-72.25199999999874,-96.82000000000478,-106.7999999999959,-80.3769999999988,-82.62799637023416,-81.86100530035384,-102.6539640610993,-81.75500000000065,-84.41699999999797,-82.53855610560909,-94.94899999999555,-96.98000000000332,-82.55876733576517,-82.68799999999932,-82.4400000000018,-82.04852234359626,-83.10473886986557,-100.9500000000036,-81.78299999999881,-97.58699999999956,-83.86640332861001,-87.53191737764188,-87.84599999999823,-81.16099999999561,-96.66313466334158,-82.39981814099372,-78.3900000000029,-80.7070944287058,-94.80300000000537,-82.37195956873545,-81.46599999999631,-81.39100000000191,-89.45500000000098,-84.34684888059832,-78.32999999999814,-114.215050913836,-96.71900000000346,-93.98647302100159,-84.91300000000044,-83.80011330935051,-80.1510000000023,-89.1529999999985,-71.79900353356825,-99.52104185418693,-84.86899999999996,-104.6328733722513,-84.84900000000088,-90.65200000000142,-97.97399999999655,-84.19400000000189,-95.94899999999545,-89.7869999999976,-83.27700000000088,-78.04600000000157,-95.03299999999734,-103.5100377528118,-83.65239564867123,-88.6249595868881,-87.66903816793582,-101.7160363881346,-83.59972735426105,-84.76999999999772,-83.86491805492885,-94.62100000000459,-92.53321078875571,-81.96340868141073,-82.03900000000024,-89.07800000000127,-92.37297348837157,-83.83000000000136,-96.94299999999934,-91.7370424870454,-80.22100000000076,-84.43888921859534,-78.07499999999898,-100.4660404131063,-78.98399999999742,-88.14199999999984,-84.52099999999957,-84.30200000000072,-84.56701594048887,-81.64999999999665,-95.0040396396351,-85.032978873239,-79.10099999999738,-99.74400000000401,-90.10800000000032,-96.681000000003,-86.51729498525381,-100.5680373705532,-81.33999999999799,-81.80999714285592,-102.0130000000043,-86.52299825327592,-82.98499999999632,-76.03287724819928,-107.4922306182519,-87.18700000000084,-87.31709062170698,-87.01704477612101,-88.24643121693056,-98.14900000000304,-88.06799999999939,-85.66666992187611,-85.75100000000052,-96.98292362093422,-79.75903527255998,-76.92200000000234,-86.52300000000083,-74.66899999999973,-93.37599999999861,-84.39499999999775,-84.99936918806391,-92.58817430368131,-96.26613095238339,-91.8810871580865,-84.94197169811316,-70.67180233602946,-86.40633139050706,-80.85000000000332,-86.35062447257427,-86.01200000000148,-85.44999999999833,-85.71688732394502,-84.51696475771013,-92.9010000000014,-86.39400000000022,-87.0439999999994,-86.94500000000133,-86.74502854122619,-85.43303729603687,-86.08319374999908,-87.61599999999906,-85.8560254237286,-95.91703519855173,-86.78200202429255,-90.27459359844892,-90.4180000000032,-91.88400000000063,-90.02899254526049,-90.01789032258206,-93.09899999999618,-91.14701525940843,-85.95015274034365,-97.79988684328364,-102.1009999999968,-91.33323791102418,-89.82199905392632,-93.20957534246297,-89.80600000000184,-106.1680878601827,-93.33328000000407,-98.73699999999579,-88.74464075993241,-81.11304096385582,-95.60700000000128,-86.25599999999584,-88.56694888475765,-84.13831336898163,-89.33313805309633,-90.07900162733756,-96.01619488100718,-90.2210020661163,-90.93278733459152,-91.28362323561358,-90.47100364630923,-80.94799999999955,-95.61715274034,-100.1730401624579,-90.34700000000126,-93.79999999999713,-98.66699999999534,-97.19999999999798,-93.18348750000034,-93.22578827361727,-93.14299999999743,-91.98799999999864,-90.66000000000244,-94.02055027422143,-98.04599202392939,-94.85900213675021,-95.24202681564118,-95.55599003322077,-95.35857883369381,-95.16657647058906,-95.28199646226486,-95.41400000000016,-94.75397905759235,-95.58600115606946,-95.40299879663063,-96.39901197604804,-94.71199507995043,-97.09399999999857,-93.82605947955201,-93.74500000000013,-93.66685876993262,-92.04097505938113,-92.29099999999831,-91.02800000000016,-96.26700000000142,-94.709041259502,-97.65399999999974,-98.25400000000072,-97.34600000000006,-97.51041877637253,-97.28304932182533,-97.8169663056558,-98.02500218102425,-98.05009946714121,-99.46677157360357,-98.47199999999906,-97.04599462943179,-99.21800762388769,-95.46199999999961,-98.48015874439308,-99.17401325966783,-98.58290409590309,-98.26265880370842,-99.0831159029696,-97.8639555774936,-97.68248226950149,-96.59100000000031,-98.23502017654526,-95.65700000000102,-97.76003289473594,-97.67899999999922,-96.92848798521048,-97.19699999999438,-96.25399693564935,-97.22652717391438,-97.31605070422491,-97.71699999999969,-97.8328392652115,-97.41657356608566,-96.85598453608226,-95.45003912543001,-96.06500000000189,-97.1989964114823,-97.0223336529243,-97.30800000000112,-97.31800374999941,-97.44994981179275,-98.05999999999887,-96.83599999999879,-96.868000000001,-98.17800000000571,-100.9256353467563,-100.7827890025579,-102.2130000000018,-102.9159999999986,-104.8080051679587,-100.4956822742471,-100.4001617977491,-104.0160919881321,-102.385999999999,-102.2046314631455,-103.2010000000007,-99.68213716814218,-98.95024472960947,-101.8221877729258,-104.4670371730174,-105.6620097560956,-104.5019999999982,-104.5113965702047,-105.5167558770371,-103.3156539717097,-104.2580125156458,-103.2122292950029,-103.0827621878706,-81.86999999999743,-77.71123180593112,-105.9900380607128,-106.9162991913729,-106.3808587677721,-107.2678702928852,-109.6059976744184,-108.1655918367327,-107.7200024009613,-110.8450103926106,-110.3439999999984,-110.9521101694929,-110.8830000000013,-109.6349999999991,-111.7660940397368,-111.8119425531913,-109.0610073891637,-112.0049645232803,-111.7328954248351,-112.0810038022802,-112.366846238937,-111.6653942028969,-112.2949999999989,-112.3826270491813,-111.910002607564,-115.6828854166671,-110.4281954602772,-104.3000000000013,-93.2826180124222,-92.9134379014972,-97.90299999999789,-117.250368286445,-116.5040118577082,-117.4380460526306,-118.2909097303618,-118.3570075757599,-118.4510000000007,-118.4890038314187,-117.7829485981316,-120.4660884520872,-120.6410020100525,-117.6360025906725,-117.1810917073185,-117.13900735294,-116.9790046598351,-116.9719999999993,-117.1160102301802,-118.5880000000022,-117.3502922422974,-117.2790051706292,-117.4560000000019,-117.1335177993539,-117.3490101112247,-118.3894975173802,-118.1500928308786,-118.3390422535211,-118.3340043196561,-118.146540703515,-89.67499999999737,-118.0510608695677,-117.9780070011685,-117.8660089585654,-81.38200783545432,-77.89999999999856,-79.00912393767858,-79.49994588370754,-78.88000000000007,-76.65700360360461,-75.69983219334347,-80.95687362637072,-78.78212412412464,-77.38308032861852,-77.96487993680668,-77.63124615384719,-77.89299999999787,-77.616857819904,-76.1750000000015,-76.56712244898041,-76.03303355704814,-77.17100000000156,-76.19367457627048,-76.90303959484352,-77.43400303643701,-76.28899999999898,-76.49300000000109,-76.60042631578915,-76.88299140893599,-77.04799547920403,-77.44000000000116,-77.03290220517769,-77.85899999999742,-81.1178825831711,-80.99595573212189,-80.80004946236701,-79.73097924901163,-80.20900000000201,-79.36599999999994,-83.32679555555448,-77.97000000000102,-80.85800214592196,-79.88999999999952,-81.05799809885957,-82.88600105152366,-82.34601694915258,-82.22012521739209,-82.37600000000033,-89.21679333020407,-82.15899999999968,-75.62199601990203,-80.95052072968618,-79.39100000000172,-81.93499999999821,-81.4190438556389,-81.15600000000151,-81.61100000000214,-82.5391053795142,-80.51999999999829,-82.5069999999988,-81.09799999999865,-79.94449825479848,-117.8639561510364,-79.47699999999925,-80.55300000000371,-82.70999888765303,-80.22200000000011,-80.62099804496506,-85.16166272727091,-86.7837547528501,-86.68499999999908,-87.60005138746202,-85.19999999999843,-87.17900000000188,-85.08100372786649,-83.98535418502213,-86.65823809523754,-86.51999999999954,-85.53099999999763,-87.41898111425797,-89.8672067183451,-89.57100000000057,-90.32499999999833,-88.44999999999801,-88.58328906955639,-88.7705400921645,-89.98976810344672,-88.91699650959963,-89.40867115384587,-82.39901777777752,-92.23883164983268,-92.14988205645061,-90.92403625954141,-90.64599999999852,-89.94970329670362,-89.83100000000063,-93.06003938730733,-91.57404031354884,-91.93400453001074,-94.00696153846049,-92.81399714013226,-92.76684338433795,-93.09499352051925,-94.11709284332588,-93.57800882612366,-94.30001996197896,-92.47000095785532,-94.36381058726063,-98.05408299504025,-94.49096376101767,-94.21707363184115,-94.16900208768203,-92.58999999999777,-91.64699999999843,-94.10700000000244,-93.15699634034958,-91.90300000000086,-94.49501185770683,-98.49170950888276,-99.26700000000129,-99.05299708879174,-99.20399529411662,-98.98300246609007,-97.6007854039956,-97.91696814671907,-97.79965126676787,-97.41400955794488,-97.38319522776693,-97.64699999999851,-97.08896004098577,-98.40006236080099,-97.01662105263492,-95.36100000000054,-95.88654158965029,-95.98400108695459,-96.02598646209273,-95.78299999999983,-97.46729069767605,-98.41700000000098,-103.1526809756109,-106.9001243243208,-107.9020000000015,-76.01600000000253,-108.7939686323709,-99.32399999999539,-93.80386786517067,-101.7068299737065,-101.3949953488372,-106.7949999999985,-106.6154479553914,-106.282383370784,-106.0880129108002,-108.229000000001,-100.283,-105.6662800982787,-103.6030000000014,-105.1410447427312,-113.935393700788,-111.4474384349825,-112.4199999999986,-110.7213745664745,-111.3390000000053,-110.0069601087989,-111.6665578158442,-109.3790000000007,-111.7832649164653,-91.00095971027305,-94.85899999999731,-96.70399999999833,-120.0750495495546,-112.1539641025635,-114.5590815836841,-114.6180065104178,-117.8660547945197,-116.7850079787255,-118.2110532623167,-118.0830133155782,-118.725174870467,-119.0534354838715,-115.1634702581374,-116.0256199770391,-119.7187100115061,-118.8492465627901,-119.399623655913,-119.6279999999982,-119.1160187617241,-119.8419958202727,-119.0830221774183,-119.2060018416228,-120.5668951797974,-120.4483572453389,-120.6279962962944,-75.51300000000053,-76.77197013274218,-76.32099999999838,-76.60200000000246,-77.32422499999925,-77.50020561941245,-78.45498793969986,-78.43799999999686,-77.00099999999951,-75.46787544483999,-75.76099999999877,-77.45132208293148,-77.44899999999598,-77.30499999999978,-77.5149999999995,-77.18293305439285,-76.41699413145631,-76.06900000000196,-77.03458679085688,-78.14400000000022,-77.55795953237313,-81.35000000000333,-76.16995176848826,-82.0329999999978,-76.68183665338633,-77.72998831030903,-76.41668484362542,-74.56701712328731,-74.84100000000032,-75.07799403578535,-74.7360215053755,-75.2297662463621,-74.13277931034601,-75.01300000000003,-75.46696783088211,-74.35015199034879,-75.36298003991898,-74.28299591002126,-74.81600000000006,-74.59974438687458,-74.41688725868822,-79.20623457943861,-78.89599999999973,-79.33500000000042,-80.8230386343234,-79.97310444674315,-80.40799999999786,-79.81765542168742,-80.68279325842556,-82.52999999999898,-78.05400000000166,-81.12237943585208,-81.20399999999896,-80.39996339603155,-81.59235608855946,-79.85288299418787,-80.22896135721132,-79.91599999999865,-77.94554669703878,-75.60600099108007,-83.31399609755981,-82.5179968487374,-84.67136501516744,-84.60528803827737,-85.73762488306872,-84.90300653594767,-85.66399999999942,-87.16700000000095,-87.68311044776168,-85.96722447183151,-84.07700788177371,-82.55406617646905,-84.23399150742922,-81.44376321586056,-80.64699807876896,-84.22599783080263,-82.87780362537681,-83.13318823529555,-82.93266113416442,-81.89200000000106,-83.47601939655178,-83.07798857142886,-84.1962617328504,-82.6570000000011,-83.83999999999807,-83.77703218884193,-84.4189999999996,-84.02700000000074,-81.46400630914933,-87.52241651031748,-88.9668854447464,-88.85804302925727,-89.25000207468881,-89.84862464183492,-89.00045710455758,-90.37312437810937,-90.65599146211466,-88.77317291066373,-84.61503951504113,-85.80300217155255,-85.89984269663005,-86.95399999999898,-87.30899999999914,-86.61699999999873,-86.27877252453345,-86.29599568965614,-85.61680506328973,-86.93700000000055,-86.05899999999939,-85.78301924927804,-89.68399999999924,-90.04980451128013,-88.94830385487383,-93.39112228260811,-91.76502034587945,-91.19201260504168,-92.21780878552808,-93.18299322362127,-90.42805355303801,-92.54300609137145,-92.14957426679165,-92.15600000000148,-92.5528746327129,-94.73497281223432,-95.40399999999957,-94.59699585062162,-93.57902010723784,-93.54990672451349,-94.73899808795522,-94.88999999999949,-94.92289863547671,-97.4303631889745,-97.03700211640003,-97.22100000000111,-97.2670267085656,-97.86100000000083,-95.48400363636151,-95.21201357466022,-97.27499999999877,-99.9677919678695,-100.724000000001,-100.9657838427951,-98.86669052224232,-99.26724571428826,-95.56603399433598,-98.55298402130482,-97.10199185335968,-96.76687011884852,-96.67898493408687,-96.19498035363671,-95.62506098579831,-95.66400000000085,-97.65090103750866,-98.80900280373645,-97.65000383877019,-101.8828899456538,-105.8617775377974,-107.7599999999993,-107.9003283716696,-103.5119820359294,-102.6879999999989,-104.4982568710378,-104.3370238948622,-102.6131363004161,-101.6919793233078,-99.83000092081178,-104.688443181817,-103.6659999999984,-104.8480048899747,-106.3160024539887,-107.8879874529496,-106.9161324675311,-106.8699974905895,-106.9330000000002,-106.8660000000029,-104.7560941747551,-102.28400203252,-104.5374257784203,-104.7502044887781,-103.21600589391,-105.1160748829934,-110.7539844961247,-110.7000797720798,-82.31703576341269,-113.0122493892422,-113.5999467275492,-113.0940314465393,-112.1450000000003,-108.5367080536902,-107.8979789196319,-108.626005095541,-104.6310818414318,-105.0157719498308,-116.0050199203191,-109.7619626666679,-111.8529960629936,-113.016000000003,-118.3593118527019,-120.5661458823523,-120.5120026666681,-121.9570268817196,-121.4949918918915,-121.2998267326746,-121.4000451875249,-121.4332000000007,-121.5670161290318,-121.5890134408622,-115.1949986893856,-117.0899960784292,-114.8454260289222,-119.7726937142838,-118.7157625329819,-121.8449901153222,-121.2285889781873,-120.9500161073809,-121.8140298879191,-122.2200080831418,-122.1159620596217,-122.25,-122.3667778936403,-121.9240063131306,-121.8161544117641,-122.0550128700109,-122.2839933628315,-122.8100129449823,-121.8503746223596,-89.21903820225003,-77.71300000000173,-71.9230000000007,-74.2649999999995,-72.86900000000014,-74.16875889328108,-90.75800000000147,-74.06100000000107,-72.828000944287,-73.13307157464324,-73.87714487632488,-73.88199999999905,-73.7079999999991,-74.10019256308011,-73.1294494074757,-72.88700000000107,-72.04898532110028,-73.96901359832508,-71.49100000000044,-71.28899999999884,-70.12101288244884,-70.51723108665738,-70.72900000000037,-70.95799912967701,-70.61500000000088,-70.27999999999918,-71.02099999999859,-69.99300000000108,-71.43298788443593,-70.22099999999922,-71.41200000000021,-73.16999999999865,-71.28299910394304,-72.68212047012781,-72.1839999999993,-72.29099268069399,-73.48299693251487,-72.65097914494196,-70.91799588053506,-71.00788494809647,-71.17399831081016,-71.87300306748477,-75.95907484407604,-80.21499999999808,-76.86400000000106,-71.75600000000085,-75.55500578034589,-75.12299694501061,-76.87399895506894,-76.29400392156877,-80.28321787148627,-76.85100000000044,-78.41200235663567,-79.9499999999983,-78.8930050632888,-78.32000000000122,-78.8340000000014,-77.84995175438766,-75.72494347464614,-76.9214646551733,-76.56704147031101,-74.79499999999862,-76.38500305188191,-75.98031077694205,-76.46650230414612,-76.89200000000174,-77.99199999999867,-72.94999999999871,-75.44632003626442,-76.13599089068725,-79.10023684210846,-73.79921453590174,-76.10312720848161,-77.05599360340995,-75.41198469387577,-80.21467981651514,-80.39817903929972,-79.92203206412853,-79.40021155410773,-83.06399447513699,-81.44474720812316,-82.17899685204532,-81.88700098425326,-84.52499413489673,-73.61000000000053,-81.42397554585084,-82.46299659864162,-79.25005454545456,-81.85155535714246,-81.6839919354841,-81.48312634186389,-80.67509677419301,-81.25007857142843,-84.42899999999932,-80.69600000000027,-83.2960000000016,-80.18211217641476,-78.63300000000133,-79.86681594083686,-78.73170319634718,-78.37100000000278,-78.93804524886897,-77.67568365180561,-92.70135058823787,-80.08292788461446,-87.92781462409933,-88.24600644468242,-90.15699449945075,-88.27800000000019,-88.86600000000003,-88.27999999999912,-89.68382337883837,-89.67600000000175,-87.0060011001097,-85.20469955947175,-86.15010476190379,-85.39400000000022,-87.4168224543091,-87.75174428274319,-87.60599895724691,-88.16737180062522,-87.8670031645557,-88.08547911989136,-86.31611927481008,-85.98313745704483,-83.80531220875898,-83.6690000000003,-83.33526756756838,-83.16099999999483,-83.74400385728146,-83.01000000000025,-83.53290486976289,-82.81852109704582,-83.98399999999722,-85.43364893616705,-82.52900000000304,-82.79299194630805,-87.88299596774311,-84.60000000000053,-86.09701547388715,-84.46696747967462,-85.25099999999939,-84.0789892588605,-84.68799999999626,-82.98595494737079,-84.70100000000062,-86.18202790697323,-84.58600000000384,-85.05300000000666,-84.95588681541859,-85.50046709416078,-84.43210405643379,-83.4349999999982,-91.125,-84.73699999999559,-89.09384291187624,-75.37900000000072,-90.52023106796187,-91.71698221343904,-95.04699999999831,-91.67300000000226,-91.42800000000503,-94.27199999999775,-93.75899999999795,-93.65479032258152,-92.91599999999858,-91.54300324324382,-92.61100000000246,-93.02199999999776,-92.44700326797397,-93.56599999999867,-95.41303792325108,-94.7889999999971,-93.35903835739813,-90.70545454545358,-93.61899601196532,-90.3327107897656,-94.36300000000342,-91.16597981157359,-91.73900000000125,-95.3809570718447,-93.86900000000387,-95.02600000000395,-92.40087683823417,-91.3269999999978,-96.19399999999706,-93.32700792864296,-93.84799999999858,-91.14998695368294,-91.97399999999635,-94.18369471624348,-93.11400000000125,-95.26000000000212,-95.83300000000413,-95.24100000000203,-95.76003851382188,-94.9171849501318,-93.90099886749627,-95.89912230215883,-96.75009194396057,-97.62585040430923,-97.99680458221256,-76.42899999999874,-96.75399999999507,-98.31427204219912,-98.94800327332341,-98.42600515464183,-99,-96.1779999999999,-95.59200000000071,-95.91681170483551,-95.86407816711694,-99.63301469387893,-100,-97.43478321678202,-96.51999999999674,-97.34962500000157,-98.68799999999641,-96.37950980392237,-102.9859981220668,-100.6744857549836,-101.768079207924,-99.77122382022642,-100.5909924457038,-101.6200039525682,-99.33890660081299,-102.80101137441,-103.0979869989157,-104.8052986247528,-105.6829613059254,-104.659462511294,-103.5937922312537,-103.6703550724682,-100.550000000002,-105.3800142180099,-106.472176409185,-107.5223403441701,-109.511992287919,-107.2169999999995,-107.71935742444,-111.9643756194234,-111.7229999999992,-109.0520169050719,-112.0110012987003,-111.9663698453611,-108.7260306513406,-104.1579885844747,-111.0300077120814,-110.7332073170712,-112.5749866962306,-115.5960269905538,-112.0630211640204,-118.5689832636001,-114.0347853403162,-115.7880156657967,-117.806867276889,-116.8902286612784,-120.7100000000012,-120.1390474576248,-119.9940080321295,-122.1150000000017,-116.1009999999995,-114.2997361563529,-114.4860235910881,-113.7660556291409,-121.7240548112069,-123.1999999999983,-122.2525691428555,-122.2982620922376,-121.6079945553507,-124.1080033305557,-124.2360115295948,-122.4679999999984,-122.3319519359136,-120.5640049079743,-122.8708311068715,-123.3640000000012,-120.3999406451601,-124.2899999999975,-71.50244099848564,-70.81724307036347,-70.92199999999974,-70.30670058872947,-70.70799999999905,-68.81905769230907,-69.66723705722164,-68.3667823834186,-69.0999712351949,-68.31299999999992,-72.61400000000101,-72.51799907149281,-72.3049959999996,-71.30000000000051,-72.56200000000059,-71.43250387596802,-71.1789999999998,-72.00399603960467,-71.54499502487431,-72.26732719233831,-73.24899163568843,-73.15000536192996,-70.94799999999952,-70.28302952755998,-69.7969999999998,-69.59500000000071,-68.69299328859,-74.84599999999978,-73.46700327510796,-76.02597160883208,-74.2069992205757,-87.39940268456152,-85.52246453900828,-86.4279999999999,-85.55200000000048,-86.82099999999845,-86.23864337101668,-86.4079999999973,-83.74911012782725,-83.41800692041502,-84.08000000000135,-84.67485188027575,-85.41722453371048,-86.24986122792276,-85.58299878048688,-83.56460443307643,-106.219977006313,-107.3800283783814,-85.45699999999646,-83.3994560906481,-105.5100406504093,-87.90347095435639,-89.73099999999978,-88.03121966527368,-88.23699999999769,-89.34355992329886,-88.13280245231738,-89.59095813734282,-89.03357995226636,-90.18100089525313,-90.30300000000302,-92.69007782805595,-90.91899999999922,-87.81400342075143,-87.85099999999971,-89.53288939462681,-92.09403722197308,-91.25300890868434,-91.48798328108538,-90.26621870286871,-90.7331898734182,-90.67799290780133,-92.49346267190481,-91.12400000000245,-89.71108272727537,-88.13272797927551,-89.83701016260123,-87.66762054054146,-88.5570000000006,-88.51700000000241,-87.41735553047485,-89.62799999999829,-88.71724162896137,-89.66700000000105,-96.00663192488615,-91.77299999999613,-90.40200000000141,-87.08348413510654,-87.63342307692419,-91.97899999999915,-94.7469967069172,-95.20200211864461,-88.73099999999978,-89.77389266304608,-89.26900000000022,-87.93794939271166,-88.49099315068521,-90.23600000000258,-91.44400000000198,-88.70300000000113,-96.75134545454581,-103.6110195348849,-96.80077033985751,-101.6009890109883,-102.5179695982604,-99.84202262017041,-96.991036144579,-97.36520158887882,-99.31811600719348,-102.0190013531802,-98.22180784954969,-92.85600000000184,-98.03800314465447,-97.14900000000104,-95.32000000000544,-95.34799999999855,-92.68900000000649,-94.05102033898416,-95.70999999999975,-94.13102066929002,-95.08000000000141,-95.39400634920658,-92.50399999999422,-95.81729239766079,-100.2850039761454,-95.21187527910681,-93.2280000000014,-92.4849999999927,-95.96788501291599,-96.29999999999448,-94.50199999999911,-93.26099999999913,-94.38213067092913,-96.15079032258066,-90.18800197044222,-93.35100650054125,-93.21660448808011,-94.34700000000387,-93.47097068062897,-93.22757074569955,-94.50700000000353,-93.05600441988771,-93.91713626373725,-94.41693507972754,-95.57993246753369,-91.7079999999989,-93.36700000000133,-98.41345495495544,-94.98606734868083,-92.83100000000398,-93.03299999999703,-103.7829999999974,-103.0538349834984,-103.1002000000021,-89.11100000000258,-103.5460104849289,-105.5409903614443,-106.7210023282895,-106.9678958333317,-110.4209932523627,-107.9499999999984,-108.0820051413876,-104.8003337408329,-92.95300000000223,-93.60800000000205,-100.4070052465913,-107.1999999999984,-109.0163257485048,-110.1070050825943,-108.4569116997781,-111.1160826594823,-108.5399653233369,-109.4570235849047,-104.2500720823799,-111.1599647355185,-110.4400383693058,-116.2390011376574,-116.6331394422322],5,null,null,{"interactive":true,"className":"","stroke":true,"color":["#FAFDCE","#43B6C4","#2597C1","#253796","#2553A3","#90D3BA","#263D98","#26499E","#2260A9","#2367AC","#69C3BF","#235BA6","#2552A2","#2359A6","#2550A1","#225DA7","#2A9BC1","#236BAE","#2552A2","#2457A5","#9BD7B9","#26469C","#1F92C0","#5BBEC1","#225DA8","#26469C","#264B9F","#225FA8","#2E9EC2","#26469C","#26499E","#264B9F","#26449B","#2457A5","#236FB0","#263F99","#3DB1C4","#2376B4","#2551A2","#26489D","#2366AC","#264DA0","#2553A2","#208ABD","#263C98","#264A9E","#2363AB","#208ABD","#26439B","#2368AD","#26489D","#2E9EC2","#2457A5","#264C9F","#2363AA","#26489D","#2372B2","#235CA7","#45B7C4","#2260A9","#3AADC3","#2372B2","#264C9F","#2D9EC2","#21318C","#1E8FBF","#2362AA","#35A7C2","#37A9C3","#264B9F","#2552A2","#2459A6","#2550A1","#263F99","#2185BB","#26449B","#BCE5B5","#1F8BBD","#1E92C0","#2260A9","#253795","#6FC6BE","#263E99","#225FA9","#2362AA","#2551A2","#263A97","#3BADC3","#2458A5","#4AB8C3","#2455A4","#2186BB","#26479D","#2550A1","#2371B1","#1F2F88","#264DA0","#237AB5","#7CCCBC","#225FA8","#192A7A","#26459C","#2366AC","#233290","#263A97","#172977","#253896","#203089","#2366AC","#2D9DC1","#2261A9","#235CA7","#264B9F","#64C1C0","#203089","#2597C1","#26419A","#263B97","#43B6C4","#2550A2","#2374B3","#2371B1","#264DA0","#1F8CBE","#253695","#233390","#263C98","#236EAF","#236AAE","#263D98","#1F2F86","#2374B2","#253795","#2363AA","#236EB0","#2457A4","#2554A3","#2551A2","#253594","#233290","#21318B","#2457A5","#26499E","#2260A9","#2359A6","#243392","#233290","#BCE4B5","#9FD8B8","#98D6B9","#8CD2BA","#E2F3B2","#D2EDB3","#A5DBB8","#7ECCBB","#70C6BE","#38AAC3","#2377B4","#68C3BF","#6CC4BE","#264DA0","#1E8FBF","#26499E","#237BB6","#2457A5","#D0ECB3","#2E9FC2","#2362AA","#CFECB3","#20308A","#3BAEC3","#2359A6","#5EBFC1","#2282B9","#5FBFC0","#253594","#152772","#225FA8","#22328E","#235AA6","#237AB5","#26429B","#2550A1","#253695","#2364AB","#2550A1","#2456A4","#235BA7","#26439B","#2551A2","#263997","#2552A2","#26499E","#264A9F","#264C9F","#26449C","#253796","#6CC5BE","#88D0BA","#21308B","#235BA6","#182978","#26419A","#5ABEC1","#2375B3","#1F8BBD","#2185BA","#26439B","#263B97","#263B97","#225FA8","#96D5B9","#243392","#263E99","#75C8BD","#3CAFC3","#26489E","#D9F0B3","#B9E3B6","#142670","#2A9BC1","#2089BC","#0E2264","#225FA8","#DDF1B2","#263A97","#6AC4BF","#235AA6","#1D2D82","#2550A1","#236FB0","#264DA0","#236AAE","#2552A2","#2366AC","#2359A6","#2366AC","#2554A3","#84CFBB","#26459C","#2373B2","#264C9F","#26409A","#235BA7","#F6FBC5","#26439B","#263E99","#5FBFC0","#2373B2","#1D2D82","#D1EDB3","#6AC3BF","#2550A1","#236BAE","#2370B1","#264099","#264B9F","#26499E","#236BAE","#254FA1","#26409A","#2363AB","#26439B","#2457A5","#225DA8","#264099","#263C98","#236DAF","#253494","#263D98","#26459C","#243392","#236BAE","#236FB0","#2362AA","#49B8C3","#264C9F","#2551A2","#1F2F87","#2364AB","#2458A5","#243391","#2551A2","#253795","#2365AB","#2395C0","#243392","#2370B1","#2550A1","#254FA1","#2367AC","#263B97","#264B9F","#26499E","#253896","#7BCBBC","#2456A4","#263C98","#263C98","#CBEBB4","#2455A4","#26469D","#264C9F","#263E99","#1E8EBF","#2377B4","#1F2F87","#227DB7","#2554A3","#253795","#C4E8B4","#2455A4","#2364AB","#225FA9","#236AAE","#254FA1","#2365AB","#263996","#23328F","#2379B5","#236AAE","#2260A9","#1B2C7E","#2554A3","#264B9F","#263D98","#26409A","#264A9F","#2456A4","#264B9F","#2552A2","#1F2F87","#2455A3","#253795","#26449B","#26409A","#2551A2","#2366AC","#225DA8","#235AA6","#2554A3","#263E99","#2365AB","#2184BA","#264B9F","#23328F","#1D2E83","#26459C","#253896","#263F99","#8DD2BA","#26449C","#2363AA","#26459C","#233290","#2550A1","#26429A","#1F92C0","#233290","#233290","#254FA1","#26499E","#208ABD","#21318C","#264C9F","#26429B","#263C98","#263C98","#2455A3","#26439B","#264B9F","#26499E","#26469D","#30A1C2","#39AAC3","#F8FCC9","#1F2F86","#26469D","#254FA1","#41B6C4","#26419A","#264C9F","#26419A","#86CFBA","#263A97","#2368AD","#2554A3","#236AAE","#2184BA","#263D98","#263B97","#263F99","#21318C","#243391","#61C0C0","#1A2B7C","#263E99","#227FB8","#235BA7","#235CA7","#26419A","#235AA6","#236AAE","#253494","#26459C","#2363AA","#2379B5","#243391","#2550A1","#254FA1","#253695","#26469C","#9ED8B8","#1F8DBE","#264B9F","#2372B2","#264C9F","#26459C","#225FA9","#23328F","#31A1C2","#263B97","#3DB0C3","#2457A5","#263F99","#1E92C0","#2550A1","#264CA0","#253896","#26459C","#2554A3","#2551A2","#B2E0B6","#2458A5","#254EA0","#263D98","#4FBAC3","#26439B","#2366AC","#23328F","#2359A6","#225FA8","#254FA1","#236CAF","#263F99","#2367AC","#264C9F","#2364AB","#21318B","#26449B","#2087BB","#2550A1","#6CC5BE","#26459C","#2456A4","#236FB0","#225DA7","#225DA8","#26429B","#254FA1","#264A9E","#253594","#2F9FC2","#2455A4","#2455A4","#26469C","#2551A2","#253695","#26439B","#3EB2C4","#26439B","#2550A1","#264DA0","#AADDB7","#23328F","#1D2E84","#1F2F88","#253896","#2C9DC1","#264A9E","#22318C","#203089","#26449C","#2374B2","#2F9FC2","#243392","#26409A","#26459C","#2359A6","#1A2B7D","#2551A2","#2366AC","#26489D","#2369AD","#254EA0","#225DA8","#22328E","#254FA1","#1A2B7C","#2554A3","#26449C","#2366AC","#1C2C80","#225DA8","#2457A5","#263F99","#236CAF","#26489D","#254FA1","#26499E","#2458A5","#263E98","#2363AA","#235BA7","#263B97","#182978","#235AA6","#182978","#2554A3","#254EA1","#2458A5","#2194C0","#8BD1BA","#1A2B7C","#254EA0","#225EA8","#26439B","#67C3BF","#264A9E","#2E9FC2","#264DA0","#263996","#264DA0","#26449C","#26479D","#236FB0","#1C2C80","#235AA6","#2368AD","#2455A4","#253494","#26429B","#263C98","#2550A1","#1E8EBF","#31A1C2","#263996","#26489D","#2093C0","#2261A9","#26469D","#26469D","#1D2D82","#263B97","#192A7A","#26449C","#2282B9","#225EA8","#225DA8","#236AAE","#2375B3","#236FB0","#236AAE","#2554A3","#254EA0","#237BB6","#2184BA","#2372B1","#2365AB","#2C9DC1","#2368AD","#237DB7","#2550A2","#2457A5","#253493","#254EA0","#2186BB","#264A9F","#2372B2","#2395C1","#2368AD","#2260A9","#263E99","#2371B1","#2372B2","#2456A4","#41B5C4","#32A3C2","#2459A5","#3FB4C4","#264C9F","#2899C1","#2295C0","#1F8BBD","#236BAE","#2899C1","#2371B1","#2183BA","#2088BC","#3AACC3","#26469C","#2D9DC1","#2496C1","#236AAE","#2280B8","#2379B5","#2A9BC1","#2093C0","#2697C1","#2395C1","#2281B8","#39ABC3","#2459A5","#2597C1","#1D90C0","#2E9EC2","#1F8BBD","#32A3C2","#3DB0C3","#2596C1","#299AC1","#2B9CC1","#33A4C2","#61C0C0","#40B4C4","#7CCBBC","#95D5B9","#9BD7B9","#66C2BF","#34A5C2","#66C2BF","#8FD3BA","#7BCBBC","#AADDB7","#64C1C0","#3DB0C3","#66C2BF","#9AD7B9","#68C3BF","#47B8C3","#AEDEB7","#59BDC1","#53BBC2","#9CD7B9","#82CEBB","#3CAFC3","#26429A","#2088BC","#BCE4B5","#AADDB7","#BFE5B5","#B5E1B6","#41B6C4","#79CABC","#9BD7B9","#37A9C3","#54BCC2","#A5DBB8","#78CABC","#B7E2B6","#C8E9B4","#E1F3B2","#A1D9B8","#DCF1B2","#D4EEB3","#D9F0B3","#DCF1B2","#C7E9B4","#E9F7B1","#DCF1B2","#DAF1B3","#E9F6B1","#4BB9C3","#40B5C4","#2550A1","#26409A","#225EA8","#48B8C3","#F0F9B7","#4DB9C3","#2375B3","#2899C1","#253795","#40B5C4","#5EBFC1","#1B2C7F","#264B9F","#32A3C2","#264B9F","#2550A1","#253795","#2362AA","#225DA8","#2455A4","#254EA1","#2550A1","#263C98","#237AB6","#254FA1","#264B9F","#EDF8B1","#2365AB","#236CAE","#2183BA","#263E99","#2185BA","#1F8BBD","#2373B2","#26499E","#26429B","#254FA1","#243391","#263A97","#26459C","#26499E","#254FA1","#264DA0","#26499E","#253695","#22328E","#263D98","#253795","#264CA0","#26409A","#26469C","#203089","#2456A4","#253796","#225DA8","#2552A2","#2552A2","#2370B1","#2550A1","#1E2F86","#26479D","#26479D","#236CAF","#236BAE","#2373B2","#264CA0","#2554A3","#2552A2","#2550A1","#2458A5","#2457A5","#225DA8","#253896","#264C9F","#264A9F","#236BAE","#2260A9","#26439B","#2550A1","#263B97","#263B97","#2365AB","#26479D","#263F99","#26409A","#2362AA","#235BA7","#26489E","#26439B","#263E99","#21318C","#26499E","#F1F9B9","#235CA7","#264B9F","#236BAE","#235CA7","#2454A3","#225EA8","#26489D","#26469D","#2455A4","#236FB0","#253795","#26439B","#236EAF","#2375B3","#26449B","#26439B","#263C98","#233390","#2552A2","#263E99","#253796","#1E2E84","#235BA6","#2457A5","#203089","#23328F","#2456A4","#254EA0","#263D98","#243393","#26489D","#237AB5","#2550A1","#2551A2","#26459C","#2458A5","#236FB0","#2553A3","#236FB0","#2551A2","#26429B","#253594","#264DA0","#20308A","#263D98","#253494","#253795","#263D98","#22328E","#253795","#253896","#263996","#253594","#264A9E","#253494","#2193C0","#33A3C2","#30A0C2","#2C9DC1","#36A7C3","#2362AA","#26419A","#225DA8","#2368AD","#2366AC","#227FB8","#236EB0","#2261A9","#254FA1","#264A9F","#254EA0","#235CA7","#253896","#225DA8","#236AAE","#2798C1","#37A8C3","#B1E0B6","#7CCCBC","#243391","#BAE4B5","#3FB3C4","#1E2E84","#3EB2C4","#62C1C0","#62C0C0","#ABDDB7","#A1D9B8","#75C8BD","#D8F0B3","#38A9C3","#6DC5BE","#6DC5BE","#52BBC2","#EFF9B5","#F2FABC","#B5E1B6","#CCEBB4","#ACDEB7","#85CFBB","#7DCCBB","#9AD7B9","#D0ECB3","#254EA0","#237DB7","#2377B4","#2370B0","#A0D9B8","#F9FDCB","#FAFDCE","#F1F9BA","#F7FCC7","#E5F5B2","#F0F9B7","#D1EDB3","#C9EAB4","#FEFED6","#FFFFD9","#ABDDB7","#B6E2B6","#4CB9C3","#8BD1BA","#1C2D81","#253594","#225DA7","#263F99","#081D58","#253896","#3BADC3","#264C9F","#2371B1","#263D98","#26429B","#225DA8","#2372B2","#2367AC","#2455A4","#26499E","#2551A2","#26439B","#2374B3","#264DA0","#2367AD","#254FA1","#235BA7","#2363AA","#26459C","#2087BB","#225FA8","#2456A4","#203089","#2367AC","#26429B","#236FB0","#2377B4","#26409A","#2456A4","#26429A","#264DA0","#26469C","#237AB5","#26469D","#2379B5","#2551A2","#263A97","#253896","#225EA8","#254FA1","#26409A","#162875","#2552A2","#254FA1","#26449C","#263B97","#2373B2","#26419A","#22328E","#2550A1","#2362AA","#243391","#235BA6","#235BA7","#2457A5","#2365AB","#26449C","#225EA8","#2455A4","#2362AA","#254FA1","#26419A","#2550A1","#227DB7","#2183BA","#2295C0","#2260A9","#227FB8","#26479D","#21318C","#26499E","#26439B","#254FA1","#225EA8","#264B9F","#264C9F","#227FB8","#237DB7","#263F99","#2365AB","#2359A6","#2364AB","#2369AD","#2375B3","#26459C","#26419A","#26479D","#26409A","#2552A2","#2371B1","#2457A5","#26499E","#21318B","#26419A","#26479D","#1F2F86","#2375B3","#264B9F","#2554A3","#264C9F","#225DA7","#2377B4","#21318B","#264A9F","#263E99","#236AAE","#2363AA","#26449C","#2551A2","#263C98","#26499E","#26449C","#11246A","#26479D","#254EA0","#26449B","#2553A3","#2455A4","#1F2F88","#263F99","#26419A","#263F99","#235CA7","#22328F","#26499E","#2363AB","#2372B2","#26489D","#1E2E85","#253494","#26479D","#26479D","#2368AD","#2359A6","#26439B","#225EA8","#2456A4","#264A9E","#254EA0","#253896","#2377B4","#236FB0","#2186BB","#264C9F","#26489E","#263C98","#2376B3","#235BA7","#26449C","#26439B","#1F2F88","#264B9F","#2552A2","#263C98","#2553A3","#2552A2","#2395C0","#49B8C3","#8BD1BA","#8DD2BA","#61C0C0","#30A1C2","#67C2BF","#77C9BD","#33A3C2","#254EA0","#264DA0","#6EC5BE","#2087BB","#7CCCBC","#60C0C0","#8AD1BA","#A5DBB8","#A2DAB8","#4FBAC2","#5CBEC1","#79CABC","#2373B2","#45B7C4","#66C2BF","#236DAF","#6EC5BE","#E2F4B2","#F8FCC9","#0D2162","#F1FABB","#F3FABD","#D6EFB3","#7FCDBB","#E0F3B2","#C5E8B4","#A0D9B8","#31A1C2","#57BCC2","#E1F3B2","#F4FBC0","#83CEBB","#F8FCC8","#EDF8B1","#66C2BF","#67C2BF","#50BAC2","#3FB3C4","#66C2BF","#6FC6BE","#6DC5BE","#56BCC2","#47B8C3","#FCFED3","#F5FBC2","#E5F5B2","#DFF2B2","#D7EFB3","#2553A3","#75C8BD","#80CDBB","#30A0C2","#2366AC","#2378B4","#2193C0","#236DAF","#236AAE","#4AB8C3","#45B7C4","#2552A2","#235AA6","#A0D9B8","#26479D","#254FA1","#264DA0","#253595","#254EA0","#2376B3","#253896","#227FB8","#2552A2","#263E99","#1E92C0","#2456A4","#2456A4","#264C9F","#2368AD","#2459A5","#2456A4","#2367AC","#263F99","#2183BA","#1A2B7C","#263E99","#26429B","#26449C","#243391","#2551A2","#264B9F","#253595","#2554A3","#23328F","#2377B4","#253695","#263996","#236EB0","#263E99","#2458A5","#2550A1","#2260A9","#2455A4","#2185BA","#236EAF","#2550A1","#26419A","#264CA0","#253594","#2370B1","#263A97","#225DA7","#264C9F","#2457A5","#263E99","#227FB8","#263996","#253494","#263D98","#254EA0","#235AA6","#263B97","#2456A4","#2550A1","#264DA0","#263F99","#225FA8","#264DA0","#263A97","#23328F","#1F2F87","#264A9E","#2371B1","#2455A4","#26459C","#2372B1","#236CAF","#2359A6","#264A9F","#2367AC","#236EB0","#264DA0","#1E2E85","#235CA7","#225FA9","#2378B4","#263B97","#26459C","#253795","#263E98","#26449C","#263E99","#2370B1","#227FB8","#264DA0","#235CA7","#2261AA","#225EA8","#20308A","#2370B1","#237BB6","#253494","#21318B","#2281B9","#22318C","#2367AC","#2281B8","#254EA0","#254EA0","#2378B4","#236CAF","#2552A2","#26469D","#2364AB","#254EA0","#2366AC","#263A97","#236FB0","#2552A2","#233390","#225FA9","#2455A4","#237BB6","#26459C","#2456A4","#2553A3","#2261AA","#2551A2","#1D91C0","#2373B2","#236FB0","#2183BA","#236AAE","#264C9F","#2186BB","#237BB6","#254EA0","#2282B9","#2457A5","#237CB6","#236CAE","#225DA8","#2373B2","#26469D","#2552A2","#2455A4","#225EA8","#2372B1","#2261AA","#2261A9","#264A9F","#235AA6","#236BAE","#2369AD","#225DA7","#236AAE","#225FA8","#235CA7","#2261AA","#2456A4","#253695","#236AAE","#253494","#21318C","#263C98","#254EA0","#263C98","#263B97","#236AAE","#22318D","#236FB0","#26419A","#26419A","#2551A2","#2552A2","#253896","#263D98","#21318B","#263D98","#263B97","#263996","#263A97","#264B9F","#263F99","#1D2D82","#1D2E84","#1C2D81","#225EA8","#26459C","#26429B","#26499E","#22318D","#2363AA","#1D2D83","#243392","#263D98","#26429B","#1F2F87","#22328F","#1B2C7F","#26409A","#264DA0","#225FA9","#2456A4","#1E2E84","#12256D","#237AB5","#263D98","#263B97","#1F2F86","#263997","#243393","#264CA0","#253494","#236DAF","#263B97","#172977","#253494","#264CA0","#2261A9","#253494","#26489D","#26459C","#2370B1","#26439B","#235AA6","#23328F","#264A9E","#2363AA","#22318D","#225FA8","#237BB6","#54BBC2","#7DCCBB","#66C2BF","#2365AB","#1F8BBD","#236AAE","#3FB3C4","#6EC5BE","#70C6BE","#C1E7B5","#91D3BA","#C2E7B5","#DAF0B3","#94D4B9","#CCEBB4","#D5EEB3","#D3EEB3","#B3E0B6","#2379B5","#C1E7B5","#49B8C3","#B6E2B6","#1D91C0","#76C9BD","#E4F4B2","#E2F3B2","#D1EDB3","#E3F4B2","#E4F4B2","#9FD9B8","#31A1C2","#4EBAC3","#2260A9","#73C8BD","#6BC4BF","#A7DCB8","#6FC6BE","#3EB1C4","#56BCC2","#93D4B9","#ACDEB7","#26449B","#243392","#13256D","#8FD3BA","#66C2BF","#7BCBBC","#63C1C0","#2371B1","#76C9BD","#1F2F87","#2552A2","#2552A2","#2455A3","#2260A9","#263997","#264B9F","#263C98","#253494","#1F2F87","#264C9F","#264099","#264CA0","#2364AB","#12256C","#263996","#2552A2","#26449B","#235AA6","#254FA1","#1D2E84","#264A9F","#2183B9","#264A9E","#26449B","#26479D","#2261A9","#264CA0","#2458A5","#235AA6","#2459A5","#263A97","#264CA0","#2378B4","#26459C","#236EB0","#263B97","#227EB7","#254EA1","#237CB6","#2377B4","#2374B3","#26479D","#2374B2","#21318B","#2376B3","#2366AC","#B6E2B6","#94D4B9","#2366AC","#2364AB","#75C8BD","#237AB5","#2455A4","#2374B3","#26489E","#2359A6","#264C9F","#236CAF","#263A97","#263996","#26429A","#26469C","#26429B","#2364AB","#264DA0","#264B9F","#254FA1","#2375B3","#2554A3","#12246B","#264A9E","#263B97","#254FA1","#225DA7","#26429A","#2553A3","#2551A2","#26419A","#2364AB","#2375B3","#264B9F","#26499E","#26429A","#1E2E85","#2366AC","#3FB4C4","#263996","#26439B","#263D98","#26449B","#253695","#2457A4","#236DAF","#2552A2","#2552A2","#263F99","#236FB0","#26489D","#264DA0","#2550A1","#225CA7","#225CA7","#253795","#2456A4","#2373B2","#235BA7","#26409A","#263C98","#172875","#236EB0","#264DA0","#2370B1","#235AA6","#263D98","#264A9F","#2552A2","#235BA7","#2459A5","#2368AD","#225DA8","#264DA0","#2372B2","#237BB6","#254FA1","#264B9F","#264099","#26429B","#2088BC","#263D98","#254FA1","#2260A9","#26439B","#26429B","#2550A1","#26499E","#236DAF","#254EA0","#26439B","#2364AB","#2379B5","#2553A3","#2365AB","#26439B","#26439B","#264C9F","#2261AA","#263E99","#2552A2","#2457A5","#2366AC","#237BB6","#2365AC","#225EA8","#253796","#26419A","#299AC1","#2194C0","#47B8C3","#3EB2C4","#2395C1","#6CC5BE","#99D6B9","#1F8ABD","#2455A4","#225EA8","#2362AA","#B3E1B6","#65C2C0","#90D3BA","#A3DAB8","#37A9C3","#79CABC","#31A2C2","#2088BC","#3FB3C4","#64C1C0","#C7E9B4","#69C3BF"],"weight":5,"opacity":1,"fill":true,"fillColor":["#FAFDCE","#43B6C4","#2597C1","#253796","#2553A3","#90D3BA","#263D98","#26499E","#2260A9","#2367AC","#69C3BF","#235BA6","#2552A2","#2359A6","#2550A1","#225DA7","#2A9BC1","#236BAE","#2552A2","#2457A5","#9BD7B9","#26469C","#1F92C0","#5BBEC1","#225DA8","#26469C","#264B9F","#225FA8","#2E9EC2","#26469C","#26499E","#264B9F","#26449B","#2457A5","#236FB0","#263F99","#3DB1C4","#2376B4","#2551A2","#26489D","#2366AC","#264DA0","#2553A2","#208ABD","#263C98","#264A9E","#2363AB","#208ABD","#26439B","#2368AD","#26489D","#2E9EC2","#2457A5","#264C9F","#2363AA","#26489D","#2372B2","#235CA7","#45B7C4","#2260A9","#3AADC3","#2372B2","#264C9F","#2D9EC2","#21318C","#1E8FBF","#2362AA","#35A7C2","#37A9C3","#264B9F","#2552A2","#2459A6","#2550A1","#263F99","#2185BB","#26449B","#BCE5B5","#1F8BBD","#1E92C0","#2260A9","#253795","#6FC6BE","#263E99","#225FA9","#2362AA","#2551A2","#263A97","#3BADC3","#2458A5","#4AB8C3","#2455A4","#2186BB","#26479D","#2550A1","#2371B1","#1F2F88","#264DA0","#237AB5","#7CCCBC","#225FA8","#192A7A","#26459C","#2366AC","#233290","#263A97","#172977","#253896","#203089","#2366AC","#2D9DC1","#2261A9","#235CA7","#264B9F","#64C1C0","#203089","#2597C1","#26419A","#263B97","#43B6C4","#2550A2","#2374B3","#2371B1","#264DA0","#1F8CBE","#253695","#233390","#263C98","#236EAF","#236AAE","#263D98","#1F2F86","#2374B2","#253795","#2363AA","#236EB0","#2457A4","#2554A3","#2551A2","#253594","#233290","#21318B","#2457A5","#26499E","#2260A9","#2359A6","#243392","#233290","#BCE4B5","#9FD8B8","#98D6B9","#8CD2BA","#E2F3B2","#D2EDB3","#A5DBB8","#7ECCBB","#70C6BE","#38AAC3","#2377B4","#68C3BF","#6CC4BE","#264DA0","#1E8FBF","#26499E","#237BB6","#2457A5","#D0ECB3","#2E9FC2","#2362AA","#CFECB3","#20308A","#3BAEC3","#2359A6","#5EBFC1","#2282B9","#5FBFC0","#253594","#152772","#225FA8","#22328E","#235AA6","#237AB5","#26429B","#2550A1","#253695","#2364AB","#2550A1","#2456A4","#235BA7","#26439B","#2551A2","#263997","#2552A2","#26499E","#264A9F","#264C9F","#26449C","#253796","#6CC5BE","#88D0BA","#21308B","#235BA6","#182978","#26419A","#5ABEC1","#2375B3","#1F8BBD","#2185BA","#26439B","#263B97","#263B97","#225FA8","#96D5B9","#243392","#263E99","#75C8BD","#3CAFC3","#26489E","#D9F0B3","#B9E3B6","#142670","#2A9BC1","#2089BC","#0E2264","#225FA8","#DDF1B2","#263A97","#6AC4BF","#235AA6","#1D2D82","#2550A1","#236FB0","#264DA0","#236AAE","#2552A2","#2366AC","#2359A6","#2366AC","#2554A3","#84CFBB","#26459C","#2373B2","#264C9F","#26409A","#235BA7","#F6FBC5","#26439B","#263E99","#5FBFC0","#2373B2","#1D2D82","#D1EDB3","#6AC3BF","#2550A1","#236BAE","#2370B1","#264099","#264B9F","#26499E","#236BAE","#254FA1","#26409A","#2363AB","#26439B","#2457A5","#225DA8","#264099","#263C98","#236DAF","#253494","#263D98","#26459C","#243392","#236BAE","#236FB0","#2362AA","#49B8C3","#264C9F","#2551A2","#1F2F87","#2364AB","#2458A5","#243391","#2551A2","#253795","#2365AB","#2395C0","#243392","#2370B1","#2550A1","#254FA1","#2367AC","#263B97","#264B9F","#26499E","#253896","#7BCBBC","#2456A4","#263C98","#263C98","#CBEBB4","#2455A4","#26469D","#264C9F","#263E99","#1E8EBF","#2377B4","#1F2F87","#227DB7","#2554A3","#253795","#C4E8B4","#2455A4","#2364AB","#225FA9","#236AAE","#254FA1","#2365AB","#263996","#23328F","#2379B5","#236AAE","#2260A9","#1B2C7E","#2554A3","#264B9F","#263D98","#26409A","#264A9F","#2456A4","#264B9F","#2552A2","#1F2F87","#2455A3","#253795","#26449B","#26409A","#2551A2","#2366AC","#225DA8","#235AA6","#2554A3","#263E99","#2365AB","#2184BA","#264B9F","#23328F","#1D2E83","#26459C","#253896","#263F99","#8DD2BA","#26449C","#2363AA","#26459C","#233290","#2550A1","#26429A","#1F92C0","#233290","#233290","#254FA1","#26499E","#208ABD","#21318C","#264C9F","#26429B","#263C98","#263C98","#2455A3","#26439B","#264B9F","#26499E","#26469D","#30A1C2","#39AAC3","#F8FCC9","#1F2F86","#26469D","#254FA1","#41B6C4","#26419A","#264C9F","#26419A","#86CFBA","#263A97","#2368AD","#2554A3","#236AAE","#2184BA","#263D98","#263B97","#263F99","#21318C","#243391","#61C0C0","#1A2B7C","#263E99","#227FB8","#235BA7","#235CA7","#26419A","#235AA6","#236AAE","#253494","#26459C","#2363AA","#2379B5","#243391","#2550A1","#254FA1","#253695","#26469C","#9ED8B8","#1F8DBE","#264B9F","#2372B2","#264C9F","#26459C","#225FA9","#23328F","#31A1C2","#263B97","#3DB0C3","#2457A5","#263F99","#1E92C0","#2550A1","#264CA0","#253896","#26459C","#2554A3","#2551A2","#B2E0B6","#2458A5","#254EA0","#263D98","#4FBAC3","#26439B","#2366AC","#23328F","#2359A6","#225FA8","#254FA1","#236CAF","#263F99","#2367AC","#264C9F","#2364AB","#21318B","#26449B","#2087BB","#2550A1","#6CC5BE","#26459C","#2456A4","#236FB0","#225DA7","#225DA8","#26429B","#254FA1","#264A9E","#253594","#2F9FC2","#2455A4","#2455A4","#26469C","#2551A2","#253695","#26439B","#3EB2C4","#26439B","#2550A1","#264DA0","#AADDB7","#23328F","#1D2E84","#1F2F88","#253896","#2C9DC1","#264A9E","#22318C","#203089","#26449C","#2374B2","#2F9FC2","#243392","#26409A","#26459C","#2359A6","#1A2B7D","#2551A2","#2366AC","#26489D","#2369AD","#254EA0","#225DA8","#22328E","#254FA1","#1A2B7C","#2554A3","#26449C","#2366AC","#1C2C80","#225DA8","#2457A5","#263F99","#236CAF","#26489D","#254FA1","#26499E","#2458A5","#263E98","#2363AA","#235BA7","#263B97","#182978","#235AA6","#182978","#2554A3","#254EA1","#2458A5","#2194C0","#8BD1BA","#1A2B7C","#254EA0","#225EA8","#26439B","#67C3BF","#264A9E","#2E9FC2","#264DA0","#263996","#264DA0","#26449C","#26479D","#236FB0","#1C2C80","#235AA6","#2368AD","#2455A4","#253494","#26429B","#263C98","#2550A1","#1E8EBF","#31A1C2","#263996","#26489D","#2093C0","#2261A9","#26469D","#26469D","#1D2D82","#263B97","#192A7A","#26449C","#2282B9","#225EA8","#225DA8","#236AAE","#2375B3","#236FB0","#236AAE","#2554A3","#254EA0","#237BB6","#2184BA","#2372B1","#2365AB","#2C9DC1","#2368AD","#237DB7","#2550A2","#2457A5","#253493","#254EA0","#2186BB","#264A9F","#2372B2","#2395C1","#2368AD","#2260A9","#263E99","#2371B1","#2372B2","#2456A4","#41B5C4","#32A3C2","#2459A5","#3FB4C4","#264C9F","#2899C1","#2295C0","#1F8BBD","#236BAE","#2899C1","#2371B1","#2183BA","#2088BC","#3AACC3","#26469C","#2D9DC1","#2496C1","#236AAE","#2280B8","#2379B5","#2A9BC1","#2093C0","#2697C1","#2395C1","#2281B8","#39ABC3","#2459A5","#2597C1","#1D90C0","#2E9EC2","#1F8BBD","#32A3C2","#3DB0C3","#2596C1","#299AC1","#2B9CC1","#33A4C2","#61C0C0","#40B4C4","#7CCBBC","#95D5B9","#9BD7B9","#66C2BF","#34A5C2","#66C2BF","#8FD3BA","#7BCBBC","#AADDB7","#64C1C0","#3DB0C3","#66C2BF","#9AD7B9","#68C3BF","#47B8C3","#AEDEB7","#59BDC1","#53BBC2","#9CD7B9","#82CEBB","#3CAFC3","#26429A","#2088BC","#BCE4B5","#AADDB7","#BFE5B5","#B5E1B6","#41B6C4","#79CABC","#9BD7B9","#37A9C3","#54BCC2","#A5DBB8","#78CABC","#B7E2B6","#C8E9B4","#E1F3B2","#A1D9B8","#DCF1B2","#D4EEB3","#D9F0B3","#DCF1B2","#C7E9B4","#E9F7B1","#DCF1B2","#DAF1B3","#E9F6B1","#4BB9C3","#40B5C4","#2550A1","#26409A","#225EA8","#48B8C3","#F0F9B7","#4DB9C3","#2375B3","#2899C1","#253795","#40B5C4","#5EBFC1","#1B2C7F","#264B9F","#32A3C2","#264B9F","#2550A1","#253795","#2362AA","#225DA8","#2455A4","#254EA1","#2550A1","#263C98","#237AB6","#254FA1","#264B9F","#EDF8B1","#2365AB","#236CAE","#2183BA","#263E99","#2185BA","#1F8BBD","#2373B2","#26499E","#26429B","#254FA1","#243391","#263A97","#26459C","#26499E","#254FA1","#264DA0","#26499E","#253695","#22328E","#263D98","#253795","#264CA0","#26409A","#26469C","#203089","#2456A4","#253796","#225DA8","#2552A2","#2552A2","#2370B1","#2550A1","#1E2F86","#26479D","#26479D","#236CAF","#236BAE","#2373B2","#264CA0","#2554A3","#2552A2","#2550A1","#2458A5","#2457A5","#225DA8","#253896","#264C9F","#264A9F","#236BAE","#2260A9","#26439B","#2550A1","#263B97","#263B97","#2365AB","#26479D","#263F99","#26409A","#2362AA","#235BA7","#26489E","#26439B","#263E99","#21318C","#26499E","#F1F9B9","#235CA7","#264B9F","#236BAE","#235CA7","#2454A3","#225EA8","#26489D","#26469D","#2455A4","#236FB0","#253795","#26439B","#236EAF","#2375B3","#26449B","#26439B","#263C98","#233390","#2552A2","#263E99","#253796","#1E2E84","#235BA6","#2457A5","#203089","#23328F","#2456A4","#254EA0","#263D98","#243393","#26489D","#237AB5","#2550A1","#2551A2","#26459C","#2458A5","#236FB0","#2553A3","#236FB0","#2551A2","#26429B","#253594","#264DA0","#20308A","#263D98","#253494","#253795","#263D98","#22328E","#253795","#253896","#263996","#253594","#264A9E","#253494","#2193C0","#33A3C2","#30A0C2","#2C9DC1","#36A7C3","#2362AA","#26419A","#225DA8","#2368AD","#2366AC","#227FB8","#236EB0","#2261A9","#254FA1","#264A9F","#254EA0","#235CA7","#253896","#225DA8","#236AAE","#2798C1","#37A8C3","#B1E0B6","#7CCCBC","#243391","#BAE4B5","#3FB3C4","#1E2E84","#3EB2C4","#62C1C0","#62C0C0","#ABDDB7","#A1D9B8","#75C8BD","#D8F0B3","#38A9C3","#6DC5BE","#6DC5BE","#52BBC2","#EFF9B5","#F2FABC","#B5E1B6","#CCEBB4","#ACDEB7","#85CFBB","#7DCCBB","#9AD7B9","#D0ECB3","#254EA0","#237DB7","#2377B4","#2370B0","#A0D9B8","#F9FDCB","#FAFDCE","#F1F9BA","#F7FCC7","#E5F5B2","#F0F9B7","#D1EDB3","#C9EAB4","#FEFED6","#FFFFD9","#ABDDB7","#B6E2B6","#4CB9C3","#8BD1BA","#1C2D81","#253594","#225DA7","#263F99","#081D58","#253896","#3BADC3","#264C9F","#2371B1","#263D98","#26429B","#225DA8","#2372B2","#2367AC","#2455A4","#26499E","#2551A2","#26439B","#2374B3","#264DA0","#2367AD","#254FA1","#235BA7","#2363AA","#26459C","#2087BB","#225FA8","#2456A4","#203089","#2367AC","#26429B","#236FB0","#2377B4","#26409A","#2456A4","#26429A","#264DA0","#26469C","#237AB5","#26469D","#2379B5","#2551A2","#263A97","#253896","#225EA8","#254FA1","#26409A","#162875","#2552A2","#254FA1","#26449C","#263B97","#2373B2","#26419A","#22328E","#2550A1","#2362AA","#243391","#235BA6","#235BA7","#2457A5","#2365AB","#26449C","#225EA8","#2455A4","#2362AA","#254FA1","#26419A","#2550A1","#227DB7","#2183BA","#2295C0","#2260A9","#227FB8","#26479D","#21318C","#26499E","#26439B","#254FA1","#225EA8","#264B9F","#264C9F","#227FB8","#237DB7","#263F99","#2365AB","#2359A6","#2364AB","#2369AD","#2375B3","#26459C","#26419A","#26479D","#26409A","#2552A2","#2371B1","#2457A5","#26499E","#21318B","#26419A","#26479D","#1F2F86","#2375B3","#264B9F","#2554A3","#264C9F","#225DA7","#2377B4","#21318B","#264A9F","#263E99","#236AAE","#2363AA","#26449C","#2551A2","#263C98","#26499E","#26449C","#11246A","#26479D","#254EA0","#26449B","#2553A3","#2455A4","#1F2F88","#263F99","#26419A","#263F99","#235CA7","#22328F","#26499E","#2363AB","#2372B2","#26489D","#1E2E85","#253494","#26479D","#26479D","#2368AD","#2359A6","#26439B","#225EA8","#2456A4","#264A9E","#254EA0","#253896","#2377B4","#236FB0","#2186BB","#264C9F","#26489E","#263C98","#2376B3","#235BA7","#26449C","#26439B","#1F2F88","#264B9F","#2552A2","#263C98","#2553A3","#2552A2","#2395C0","#49B8C3","#8BD1BA","#8DD2BA","#61C0C0","#30A1C2","#67C2BF","#77C9BD","#33A3C2","#254EA0","#264DA0","#6EC5BE","#2087BB","#7CCCBC","#60C0C0","#8AD1BA","#A5DBB8","#A2DAB8","#4FBAC2","#5CBEC1","#79CABC","#2373B2","#45B7C4","#66C2BF","#236DAF","#6EC5BE","#E2F4B2","#F8FCC9","#0D2162","#F1FABB","#F3FABD","#D6EFB3","#7FCDBB","#E0F3B2","#C5E8B4","#A0D9B8","#31A1C2","#57BCC2","#E1F3B2","#F4FBC0","#83CEBB","#F8FCC8","#EDF8B1","#66C2BF","#67C2BF","#50BAC2","#3FB3C4","#66C2BF","#6FC6BE","#6DC5BE","#56BCC2","#47B8C3","#FCFED3","#F5FBC2","#E5F5B2","#DFF2B2","#D7EFB3","#2553A3","#75C8BD","#80CDBB","#30A0C2","#2366AC","#2378B4","#2193C0","#236DAF","#236AAE","#4AB8C3","#45B7C4","#2552A2","#235AA6","#A0D9B8","#26479D","#254FA1","#264DA0","#253595","#254EA0","#2376B3","#253896","#227FB8","#2552A2","#263E99","#1E92C0","#2456A4","#2456A4","#264C9F","#2368AD","#2459A5","#2456A4","#2367AC","#263F99","#2183BA","#1A2B7C","#263E99","#26429B","#26449C","#243391","#2551A2","#264B9F","#253595","#2554A3","#23328F","#2377B4","#253695","#263996","#236EB0","#263E99","#2458A5","#2550A1","#2260A9","#2455A4","#2185BA","#236EAF","#2550A1","#26419A","#264CA0","#253594","#2370B1","#263A97","#225DA7","#264C9F","#2457A5","#263E99","#227FB8","#263996","#253494","#263D98","#254EA0","#235AA6","#263B97","#2456A4","#2550A1","#264DA0","#263F99","#225FA8","#264DA0","#263A97","#23328F","#1F2F87","#264A9E","#2371B1","#2455A4","#26459C","#2372B1","#236CAF","#2359A6","#264A9F","#2367AC","#236EB0","#264DA0","#1E2E85","#235CA7","#225FA9","#2378B4","#263B97","#26459C","#253795","#263E98","#26449C","#263E99","#2370B1","#227FB8","#264DA0","#235CA7","#2261AA","#225EA8","#20308A","#2370B1","#237BB6","#253494","#21318B","#2281B9","#22318C","#2367AC","#2281B8","#254EA0","#254EA0","#2378B4","#236CAF","#2552A2","#26469D","#2364AB","#254EA0","#2366AC","#263A97","#236FB0","#2552A2","#233390","#225FA9","#2455A4","#237BB6","#26459C","#2456A4","#2553A3","#2261AA","#2551A2","#1D91C0","#2373B2","#236FB0","#2183BA","#236AAE","#264C9F","#2186BB","#237BB6","#254EA0","#2282B9","#2457A5","#237CB6","#236CAE","#225DA8","#2373B2","#26469D","#2552A2","#2455A4","#225EA8","#2372B1","#2261AA","#2261A9","#264A9F","#235AA6","#236BAE","#2369AD","#225DA7","#236AAE","#225FA8","#235CA7","#2261AA","#2456A4","#253695","#236AAE","#253494","#21318C","#263C98","#254EA0","#263C98","#263B97","#236AAE","#22318D","#236FB0","#26419A","#26419A","#2551A2","#2552A2","#253896","#263D98","#21318B","#263D98","#263B97","#263996","#263A97","#264B9F","#263F99","#1D2D82","#1D2E84","#1C2D81","#225EA8","#26459C","#26429B","#26499E","#22318D","#2363AA","#1D2D83","#243392","#263D98","#26429B","#1F2F87","#22328F","#1B2C7F","#26409A","#264DA0","#225FA9","#2456A4","#1E2E84","#12256D","#237AB5","#263D98","#263B97","#1F2F86","#263997","#243393","#264CA0","#253494","#236DAF","#263B97","#172977","#253494","#264CA0","#2261A9","#253494","#26489D","#26459C","#2370B1","#26439B","#235AA6","#23328F","#264A9E","#2363AA","#22318D","#225FA8","#237BB6","#54BBC2","#7DCCBB","#66C2BF","#2365AB","#1F8BBD","#236AAE","#3FB3C4","#6EC5BE","#70C6BE","#C1E7B5","#91D3BA","#C2E7B5","#DAF0B3","#94D4B9","#CCEBB4","#D5EEB3","#D3EEB3","#B3E0B6","#2379B5","#C1E7B5","#49B8C3","#B6E2B6","#1D91C0","#76C9BD","#E4F4B2","#E2F3B2","#D1EDB3","#E3F4B2","#E4F4B2","#9FD9B8","#31A1C2","#4EBAC3","#2260A9","#73C8BD","#6BC4BF","#A7DCB8","#6FC6BE","#3EB1C4","#56BCC2","#93D4B9","#ACDEB7","#26449B","#243392","#13256D","#8FD3BA","#66C2BF","#7BCBBC","#63C1C0","#2371B1","#76C9BD","#1F2F87","#2552A2","#2552A2","#2455A3","#2260A9","#263997","#264B9F","#263C98","#253494","#1F2F87","#264C9F","#264099","#264CA0","#2364AB","#12256C","#263996","#2552A2","#26449B","#235AA6","#254FA1","#1D2E84","#264A9F","#2183B9","#264A9E","#26449B","#26479D","#2261A9","#264CA0","#2458A5","#235AA6","#2459A5","#263A97","#264CA0","#2378B4","#26459C","#236EB0","#263B97","#227EB7","#254EA1","#237CB6","#2377B4","#2374B3","#26479D","#2374B2","#21318B","#2376B3","#2366AC","#B6E2B6","#94D4B9","#2366AC","#2364AB","#75C8BD","#237AB5","#2455A4","#2374B3","#26489E","#2359A6","#264C9F","#236CAF","#263A97","#263996","#26429A","#26469C","#26429B","#2364AB","#264DA0","#264B9F","#254FA1","#2375B3","#2554A3","#12246B","#264A9E","#263B97","#254FA1","#225DA7","#26429A","#2553A3","#2551A2","#26419A","#2364AB","#2375B3","#264B9F","#26499E","#26429A","#1E2E85","#2366AC","#3FB4C4","#263996","#26439B","#263D98","#26449B","#253695","#2457A4","#236DAF","#2552A2","#2552A2","#263F99","#236FB0","#26489D","#264DA0","#2550A1","#225CA7","#225CA7","#253795","#2456A4","#2373B2","#235BA7","#26409A","#263C98","#172875","#236EB0","#264DA0","#2370B1","#235AA6","#263D98","#264A9F","#2552A2","#235BA7","#2459A5","#2368AD","#225DA8","#264DA0","#2372B2","#237BB6","#254FA1","#264B9F","#264099","#26429B","#2088BC","#263D98","#254FA1","#2260A9","#26439B","#26429B","#2550A1","#26499E","#236DAF","#254EA0","#26439B","#2364AB","#2379B5","#2553A3","#2365AB","#26439B","#26439B","#264C9F","#2261AA","#263E99","#2552A2","#2457A5","#2366AC","#237BB6","#2365AC","#225EA8","#253796","#26419A","#299AC1","#2194C0","#47B8C3","#3EB2C4","#2395C1","#6CC5BE","#99D6B9","#1F8ABD","#2455A4","#225EA8","#2362AA","#B3E1B6","#65C2C0","#90D3BA","#A3DAB8","#37A9C3","#79CABC","#31A2C2","#2088BC","#3FB3C4","#64C1C0","#C7E9B4","#69C3BF"],"fillOpacity":1},null,null,["16.72 C","53.9 C","62.58 C","83.54 C","76.97 C","41.9 C","82.21 C","79.34 C","73.75 C","72.42 C","48.24 C","75.06 C","77.24 C","75.4 C","77.58 C","74.53 C","61.46 C","71.61 C","77.19 C","75.85 C","40.38 C","80.13 C","63.88 C","50.69 C","74.44 C","80.06 C","78.95 C","74.03 C","60.54 C","80.12 C","79.32 C","78.95 C","80.57 C","75.87 C","70.89 C","81.81 C","55.49 C","69.42 C","77.39 C","79.62 C","72.7 C","78.33 C","77.01 C","65.5 C","82.36 C","79.05 C","73.14 C","65.58 C","80.64 C","72.13 C","79.6 C","60.55 C","75.93 C","78.62 C","73.28 C","79.54 C","70.23 C","74.83 C","53.63 C","73.76 C","56.6 C","70.17 C","78.64 C","60.65 C","85.6 C","64.5 C","73.43 C","58.27 C","57.62 C","78.96 C","77.24 C","75.49 C","77.6 C","81.63 C","66.47 C","80.61 C","35.6 C","65.28 C","64.02 C","73.91 C","83.67 C","47.19 C","81.9 C","73.98 C","73.48 C","77.32 C","82.79 C","56.51 C","75.6 C","53.04 C","76.49 C","66.4 C","79.83 C","77.64 C","70.5 C","86.29 C","78.34 C","68.61 C","44.59 C","74.14 C","88.62 C","80.2 C","72.71 C","84.97 C","82.88 C","89.06 C","83.28 C","86.02 C","72.63 C","60.73 C","73.62 C","74.83 C","78.85 C","49.11 C","86.05 C","62.56 C","81.17 C","82.77 C","53.92 C","77.51 C","69.79 C","70.41 C","78.28 C","65.18 C","83.86 C","84.87 C","82.44 C","71.12 C","71.82 C","82.17 C","86.58 C","69.91 C","83.6 C","73.27 C","71.05 C","76.04 C","76.67 C","77.42 C","84.12 C","85.01 C","85.76 C","75.87 C","79.42 C","73.85 C","75.43 C","84.62 C","84.97 C","35.67 C","39.91 C","40.83 C","42.39 C","26.95 C","31.01 C","39.01 C","44.34 C","46.96 C","57.45 C","69.33 C","48.55 C","47.75 C","78.43 C","64.61 C","79.26 C","68.48 C","75.92 C","31.74 C","60.41 C","73.46 C","31.97 C","85.91 C","56.33 C","75.47 C","50.22 C","67.08 C","49.98 C","84.08 C","89.85 C","74.06 C","85.31 C","75.33 C","68.62 C","80.99 C","77.7 C","83.79 C","72.95 C","77.53 C","76.14 C","74.93 C","80.74 C","77.45 C","83.04 C","77.12 C","79.24 C","79.01 C","78.59 C","80.53 C","83.51 C","47.7 C","42.94 C","85.8 C","75.03 C","88.81 C","81.19 C","50.79 C","69.71 C","65.32 C","66.59 C","80.74 C","82.75 C","82.76 C","74.06 C","41.1 C","84.57 C","81.88 C","46.02 C","55.93 C","79.49 C","29.17 C","36.19 C","90.2 C","61.43 C","65.73 C","92.32 C","74.08 C","28.32 C","82.87 C","48.12 C","75.25 C","87.27 C","77.7 C","70.82 C","78.33 C","71.83 C","77.26 C","72.61 C","75.37 C","72.7 C","76.76 C","43.39 C","80.25 C","70 C","78.71 C","81.44 C","74.96 C","18.93 C","80.81 C","81.89 C","49.94 C","69.96 C","87.16 C","31.31 C","48.18 C","77.63 C","71.6 C","70.6 C","81.57 C","78.75 C","79.31 C","71.7 C","77.83 C","81.4 C","73.19 C","80.8 C","75.82 C","74.49 C","81.55 C","82.45 C","71.2 C","84.28 C","82.22 C","80.29 C","84.61 C","71.69 C","70.76 C","73.46 C","53.15 C","78.52 C","77.28 C","86.46 C","72.95 C","75.74 C","84.77 C","77.47 C","83.62 C","72.85 C","63.05 C","84.56 C","70.64 C","77.61 C","77.84 C","72.41 C","82.74 C","78.81 C","79.2 C","83.42 C","44.88 C","76.09 C","82.41 C","82.54 C","32.86 C","76.31 C","79.94 C","78.68 C","81.92 C","64.74 C","69.32 C","86.42 C","68.06 C","76.69 C","83.6 C","34.52 C","76.44 C","72.97 C","73.97 C","71.85 C","77.95 C","72.88 C","83.17 C","85.05 C","68.89 C","71.86 C","73.8 C","87.92 C","76.75 C","78.77 C","82.19 C","81.45 C","78.99 C","76.16 C","78.88 C","77.11 C","86.46 C","76.52 C","83.59 C","80.6 C","81.51 C","77.32 C","72.63 C","74.36 C","75.26 C","76.7 C","82 C","72.9 C","66.66 C","78.78 C","85.13 C","87 C","80.19 C","83.32 C","81.61 C","42.34 C","80.51 C","73.3 C","80.19 C","85 C","77.67 C","81.05 C","63.86 C","84.94 C","84.96 C","77.94 C","79.36 C","65.51 C","85.63 C","78.62 C","80.94 C","82.35 C","82.33 C","76.53 C","80.77 C","78.79 C","79.38 C","79.99 C","59.87 C","57.25 C","17.92 C","86.5 C","80.01 C","77.96 C","54.16 C","81.21 C","78.66 C","81.34 C","43.2 C","82.92 C","72.32 C","76.7 C","71.74 C","66.69 C","82.22 C","82.57 C","81.64 C","85.64 C","84.73 C","49.6 C","88.22 C","81.89 C","67.64 C","74.97 C","74.79 C","81.24 C","75.22 C","71.75 C","84.22 C","80.34 C","73.2 C","68.88 C","84.72 C","77.54 C","77.91 C","83.77 C","80.12 C","40.07 C","64.99 C","78.85 C","70.16 C","78.64 C","80.2 C","74.02 C","85.14 C","59.64 C","82.73 C","55.75 C","75.82 C","81.68 C","64.02 C","77.75 C","78.51 C","83.31 C","80.36 C","76.63 C","77.33 C","37.12 C","75.78 C","78.05 C","82.12 C","52.37 C","80.78 C","72.67 C","85.17 C","75.44 C","74.07 C","77.77 C","71.4 C","81.61 C","72.39 C","78.62 C","72.96 C","85.71 C","80.62 C","66.09 C","77.62 C","47.72 C","80.19 C","76.29 C","70.81 C","74.58 C","74.36 C","80.88 C","77.84 C","79.09 C","84.14 C","60.25 C","76.5 C","76.48 C","80.08 C","77.31 C","83.93 C","80.65 C","55.28 C","80.85 C","77.62 C","78.44 C","38.3 C","85.12 C","86.95 C","86.26 C","83.44 C","60.96 C","79.13 C","85.52 C","86.13 C","80.51 C","69.92 C","60.25 C","84.57 C","81.52 C","80.37 C","75.34 C","88.03 C","77.39 C","72.63 C","79.66 C","72.09 C","78.18 C","74.47 C","85.22 C","77.87 C","88.14 C","76.77 C","80.46 C","72.68 C","87.5 C","74.42 C","75.82 C","81.72 C","71.37 C","79.54 C","77.82 C","79.23 C","75.65 C","82.06 C","73.26 C","74.92 C","82.58 C","88.91 C","75.18 C","88.94 C","76.69 C","78 C","75.61 C","63.38 C","42.61 C","88.25 C","78.15 C","74.16 C","80.67 C","48.6 C","79.05 C","60.44 C","78.41 C","83.2 C","78.25 C","80.41 C","79.91 C","70.84 C","87.61 C","75.33 C","72.2 C","76.37 C","84.36 C","80.91 C","82.38 C","77.59 C","64.79 C","59.66 C","83.08 C","79.67 C","63.7 C","73.65 C","79.99 C","79.98 C","87.18 C","82.63 C","88.59 C","80.52 C","67.01 C","74.23 C","74.49 C","71.84 C","69.72 C","70.92 C","71.76 C","76.61 C","78.21 C","68.42 C","66.74 C","70.29 C","72.9 C","60.93 C","72.28 C","68.17 C","77.51 C","75.98 C","84.4 C","78.07 C","66.38 C","78.96 C","70.21 C","63 C","72.26 C","73.77 C","81.86 C","70.37 C","70.26 C","76.25 C","54.29 C","59.31 C","75.51 C","54.78 C","78.55 C","61.91 C","63.21 C","65.34 C","71.59 C","61.93 C","70.49 C","66.86 C","65.9 C","56.82 C","80.07 C","60.85 C","62.78 C","71.86 C","67.48 C","68.83 C","61.41 C","63.63 C","62.39 C","63.01 C","67.38 C","57.18 C","75.52 C","62.58 C","64.35 C","60.53 C","65.24 C","59.35 C","55.83 C","62.71 C","61.64 C","61.26 C","58.95 C","49.58 C","54.6 C","44.75 C","41.25 C","40.47 C","48.83 C","58.72 C","48.88 C","42.02 C","44.82 C","38.38 C","49.1 C","55.65 C","48.86 C","40.55 C","48.53 C","53.42 C","37.75 C","50.97 C","51.84 C","40.35 C","43.69 C","56.07 C","81.05 C","66 C","35.74 C","38.29 C","35.28 C","36.78 C","54.18 C","45.33 C","40.42 C","57.73 C","51.66 C","39.06 C","45.43 C","36.39 C","33.76 C","27.12 C","39.57 C","28.42 C","30.68 C","29.28 C","28.62 C","33.94 C","24.9 C","28.63 C","28.9 C","24.98 C","52.94 C","54.4 C","77.73 C","81.39 C","74.27 C","53.31 C","22.41 C","52.71 C","69.56 C","61.95 C","83.67 C","54.4 C","50.14 C","87.68 C","78.77 C","59.35 C","78.85 C","77.67 C","83.7 C","73.51 C","74.48 C","76.46 C","77.99 C","77.73 C","82.48 C","68.58 C","77.8 C","78.78 C","23.88 C","72.9 C","71.52 C","66.81 C","82.02 C","66.56 C","65.33 C","70.1 C","79.37 C","80.91 C","77.77 C","84.71 C","82.85 C","80.21 C","79.38 C","77.85 C","78.42 C","79.23 C","83.9 C","85.32 C","82.14 C","83.7 C","78.48 C","81.49 C","80.11 C","86.13 C","76.29 C","83.49 C","74.38 C","77.1 C","77.23 C","70.56 C","77.64 C","86.59 C","79.73 C","79.69 C","71.42 C","71.56 C","70.11 C","78.48 C","76.7 C","77.22 C","77.66 C","75.6 C","75.99 C","74.49 C","83.42 C","78.57 C","78.98 C","71.67 C","73.83 C","80.79 C","77.72 C","82.62 C","82.72 C","72.81 C","79.88 C","81.82 C","81.4 C","73.41 C","74.99 C","79.45 C","80.66 C","81.96 C","85.64 C","79.44 C","21.95 C","74.79 C","78.82 C","71.57 C","74.66 C","76.55 C","74.35 C","79.65 C","79.94 C","76.31 C","70.89 C","83.7 C","80.86 C","71.12 C","69.66 C","80.58 C","80.73 C","82.32 C","84.88 C","77.25 C","81.88 C","83.51 C","86.93 C","75.04 C","75.86 C","86.12 C","85.12 C","76.18 C","78.15 C","82.28 C","84.53 C","79.63 C","68.67 C","77.69 C","77.32 C","80.24 C","75.66 C","70.76 C","76.79 C","70.93 C","77.43 C","80.98 C","84.18 C","78.28 C","85.89 C","82.12 C","84.33 C","83.67 C","82.24 C","85.21 C","83.7 C","83.34 C","83.2 C","84.18 C","79.15 C","84.26 C","63.5 C","59.1 C","60.05 C","60.91 C","58.01 C","73.34 C","81.23 C","74.38 C","72.19 C","72.59 C","67.71 C","71.02 C","73.66 C","77.76 C","78.97 C","78.03 C","74.83 C","83.3 C","74.43 C","71.88 C","62.29 C","57.77 C","37.26 C","44.7 C","84.78 C","35.9 C","54.84 C","86.88 C","55.13 C","49.45 C","49.57 C","38.12 C","39.55 C","46.07 C","29.48 C","57.52 C","47.58 C","47.62 C","51.94 C","22.96 C","21.07 C","36.71 C","32.69 C","38.09 C","43.27 C","44.53 C","40.55 C","31.75 C","78.12 C","68.16 C","69.17 C","70.71 C","39.81 C","17.29 C","16.57 C","21.79 C","18.51 C","25.99 C","22.32 C","31.43 C","33.44 C","14.62 C","13.87 C","38.16 C","36.63 C","52.77 C","42.57 C","87.45 C","84.13 C","74.58 C","81.73 C","94.36 C","83.45 C","56.46 C","78.65 C","70.37 C","82.25 C","80.93 C","74.37 C","70.18 C","72.49 C","76.44 C","79.2 C","77.38 C","80.75 C","69.75 C","78.4 C","72.34 C","77.96 C","74.85 C","73.27 C","80.35 C","66.1 C","74.09 C","76.15 C","86.11 C","72.39 C","80.97 C","70.84 C","69.32 C","81.42 C","76.2 C","81.1 C","78.39 C","80.16 C","68.61 C","79.95 C","68.83 C","77.49 C","82.87 C","83.48 C","74.3 C","77.96 C","81.41 C","89.4 C","77.08 C","77.98 C","80.49 C","82.58 C","70.04 C","81.27 C","85.24 C","77.52 C","73.35 C","84.8 C","75.03 C","74.88 C","75.93 C","72.84 C","80.43 C","74.28 C","76.5 C","73.43 C","77.89 C","81.32 C","77.54 C","68 C","66.82 C","63.16 C","73.93 C","67.73 C","79.83 C","85.56 C","79.37 C","80.76 C","77.92 C","74.35 C","78.76 C","78.52 C","67.73 C","68.15 C","81.79 C","72.79 C","75.43 C","73.11 C","72.06 C","69.72 C","80.25 C","81.16 C","79.76 C","81.44 C","77.13 C","70.43 C","75.94 C","79.2 C","85.73 C","81.32 C","79.72 C","86.54 C","69.66 C","78.83 C","76.75 C","78.6 C","74.52 C","69.32 C","85.73 C","79.01 C","81.85 C","71.85 C","73.24 C","80.4 C","77.27 C","82.54 C","79.39 C","80.41 C","91.32 C","79.74 C","78.12 C","80.6 C","76.79 C","76.4 C","86.28 C","81.61 C","81.12 C","81.76 C","74.77 C","85.18 C","79.42 C","73.18 C","70.23 C","79.66 C","86.67 C","84.29 C","79.75 C","79.8 C","72.3 C","75.4 C","80.82 C","74.36 C","76.25 C","79.19 C","78.16 C","83.42 C","69.16 C","70.9 C","66.31 C","78.64 C","79.45 C","82.51 C","69.48 C","74.88 C","80.46 C","80.68 C","86.3 C","78.89 C","77.16 C","82.36 C","76.85 C","77.23 C","63.1 C","53.16 C","42.58 C","42.26 C","49.7 C","59.81 C","48.67 C","45.69 C","59.15 C","78.07 C","78.47 C","47.35 C","66.09 C","44.68 C","49.82 C","42.71 C","38.99 C","39.45 C","52.34 C","50.49 C","45.23 C","70.11 C","53.6 C","48.76 C","71.27 C","47.32 C","26.92 C","17.94 C","92.63 C","21.51 C","20.85 C","29.98 C","44.09 C","27.52 C","34.26 C","39.72 C","59.64 C","51.28 C","27.13 C","20.25 C","43.57 C","18.03 C","23.91 C","48.8 C","48.67 C","52.2 C","54.99 C","48.8 C","47.13 C","47.57 C","51.37 C","53.36 C","15.32 C","19.76 C","26.18 C","27.74 C","29.72 C","76.81 C","46.1 C","43.92 C","59.96 C","72.72 C","69.09 C","63.51 C","71.17 C","71.74 C","53.07 C","53.63 C","77.07 C","75.24 C","39.68 C","79.81 C","77.81 C","78.41 C","83.98 C","78.07 C","69.44 C","83.38 C","67.61 C","77.09 C","81.9 C","64.04 C","76.21 C","76.11 C","78.62 C","72.28 C","75.53 C","76.08 C","72.49 C","81.69 C","66.83 C","88.17 C","81.98 C","80.89 C","80.49 C","84.78 C","77.5 C","78.91 C","83.96 C","76.7 C","85.13 C","69.24 C","83.74 C","83.12 C","70.98 C","81.92 C","75.81 C","77.63 C","73.74 C","76.35 C","66.5 C","71.13 C","77.67 C","81.15 C","78.5 C","84.07 C","70.67 C","82.99 C","74.54 C","78.66 C","75.92 C","81.89 C","67.61 C","83.07 C","84.34 C","82.1 C","78.03 C","75.25 C","82.64 C","76.08 C","77.6 C","78.42 C","81.63 C","74.09 C","78.47 C","82.96 C","85.16 C","86.35 C","79.15 C","70.36 C","76.49 C","80.19 C","70.29 C","71.43 C","75.41 C","78.98 C","72.41 C","71 C","78.32 C","86.76 C","74.62 C","74 C","69.13 C","82.73 C","80.25 C","83.72 C","82.05 C","80.41 C","81.9 C","70.69 C","67.58 C","78.29 C","74.73 C","73.58 C","74.33 C","85.95 C","70.6 C","68.46 C","84.38 C","85.78 C","67.3 C","85.53 C","72.42 C","67.36 C","78.1 C","78.19 C","69.08 C","71.47 C","77.05 C","80.01 C","73.02 C","78.07 C","72.7 C","82.89 C","70.87 C","77.14 C","84.93 C","74.01 C","76.37 C","68.46 C","80.16 C","76.14 C","76.89 C","73.61 C","77.5 C","64.1 C","70.05 C","70.9 C","66.89 C","71.77 C","78.6 C","66.36 C","68.56 C","78.19 C","67.04 C","75.97 C","68.17 C","71.53 C","74.39 C","70.02 C","80.02 C","77.13 C","76.5 C","74.34 C","70.32 C","73.56 C","73.62 C","79.01 C","75.2 C","71.61 C","72.01 C","74.49 C","71.76 C","74.09 C","74.73 C","73.61 C","76.21 C","83.76 C","71.77 C","84.21 C","85.6 C","82.32 C","78.12 C","82.39 C","82.56 C","71.81 C","85.51 C","70.91 C","81.26 C","81.28 C","77.42 C","77.03 C","83.41 C","82.3 C","85.76 C","82.21 C","82.74 C","83.12 C","82.87 C","78.91 C","81.77 C","87.19 C","86.95 C","87.33 C","74.25 C","80.33 C","80.95 C","79.36 C","85.44 C","73.2 C","87.08 C","84.69 C","82.12 C","80.97 C","86.39 C","85.18 C","87.73 C","81.43 C","78.37 C","74 C","76.12 C","86.92 C","90.81 C","68.67 C","82.24 C","82.55 C","86.57 C","83.02 C","84.54 C","78.51 C","84.2 C","71.3 C","82.75 C","89.08 C","84.37 C","78.51 C","73.71 C","84.33 C","79.67 C","80.4 C","70.56 C","80.85 C","75.13 C","85.04 C","79.06 C","73.31 C","85.44 C","74.1 C","68.4 C","51.69 C","44.53 C","48.88 C","72.88 C","65.43 C","71.93 C","54.97 C","47.45 C","47 C","34.84 C","41.73 C","34.75 C","28.98 C","41.36 C","32.77 C","30.33 C","30.79 C","37.07 C","68.87 C","34.84 C","53.1 C","36.62 C","64.25 C","45.85 C","26.32 C","27 C","31.36 C","26.59 C","26.41 C","39.86 C","59.68 C","52.45 C","73.85 C","46.35 C","47.96 C","38.77 C","47.29 C","55.43 C","51.41 C","41.52 C","38 C","80.54 C","84.61 C","90.68 C","42.04 C","48.89 C","44.89 C","49.25 C","70.41 C","45.8 C","86.34 C","77.17 C","77.09 C","76.53 C","73.74 C","83.03 C","78.75 C","82.48 C","84.31 C","86.48 C","78.62 C","81.55 C","78.48 C","73.02 C","90.87 C","83.07 C","77.1 C","80.62 C","75.12 C","77.8 C","86.97 C","79 C","66.95 C","79.12 C","80.57 C","79.72 C","73.69 C","78.5 C","75.8 C","75.21 C","75.51 C","82.99 C","78.49 C","69.09 C","80.3 C","71.1 C","82.67 C","67.86 C","78.01 C","68.31 C","69.26 C","69.79 C","79.79 C","69.87 C","85.74 C","69.47 C","72.56 C","36.63 C","41.41 C","72.7 C","72.95 C","46.05 C","68.74 C","76.41 C","69.84 C","79.52 C","75.46 C","78.53 C","71.35 C","82.92 C","83.09 C","81.04 C","80.11 C","80.91 C","73.09 C","78.39 C","78.72 C","77.9 C","69.69 C","76.59 C","91.11 C","79.07 C","82.57 C","77.9 C","74.58 C","81.06 C","76.92 C","77.31 C","81.29 C","73.12 C","69.71 C","78.9 C","79.28 C","81.07 C","86.8 C","72.6 C","54.78 C","83.2 C","80.87 C","82.1 C","80.6 C","83.82 C","76.03 C","71.21 C","77.03 C","77.12 C","81.63 C","70.89 C","79.67 C","78.38 C","77.68 C","74.61 C","74.61 C","83.58 C","76.29 C","70.14 C","74.93 C","81.44 C","82.32 C","89.4 C","71.07 C","78.28 C","70.66 C","75.28 C","82.07 C","78.96 C","77.06 C","74.96 C","75.51 C","72.17 C","74.38 C","78.43 C","70.23 C","68.45 C","77.86 C","78.78 C","81.55 C","81 C","65.89 C","82.26 C","77.84 C","73.93 C","80.71 C","80.97 C","77.56 C","79.24 C","71.25 C","78.21 C","80.84 C","73.07 C","68.87 C","76.86 C","72.83 C","80.68 C","80.81 C","78.54 C","73.57 C","81.94 C","77.16 C","75.9 C","72.7 C","68.52 C","72.74 C","74.2 C","83.54 C","81.2 C","61.69 C","63.45 C","53.4 C","55.15 C","62.97 C","47.68 C","40.76 C","65.45 C","76.31 C","74.35 C","73.35 C","36.99 C","49.04 C","41.85 C","39.26 C","57.7 C","45.35 C","59.48 C","65.9 C","54.99 C","49.2 C","33.91 C","48.33 C"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addLegend","args":[{"colors":["#FFFFD9 , #F4FBC1 7.61629923107463%, #D6EFB3 20.039537174422%, #9ED8B8 32.4627751177693%, #5FBFC0 44.8860130611166%, #30A0C2 57.309251004464%, #2373B2 69.7324889478113%, #26469D 82.1557268911587%, #152771 94.578964834506%, #081D58 "],"labels":["20","30","40","50","60","70","80","90"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomleft","type":"numeric","title":"Relative Humidity","extra":{"p_1":0.07616299231074634,"p_n":0.94578964834506},"layerId":null,"className":"info legend","group":null}]},{"method":"addMarkers","args":[[34.71799464422373,28.81653507565434,36.33000000000131,38.88334210526413,43.93333484162802,44.27000000000037,40.89303908355578,41.77999999999927,37.51300000000322,29.97600000000084],[-120.5668951797974,-82.31703576341269,-77.63499999999878,-90.04980451128013,-90.26621870286871,-71.30000000000051,-97.99680458221256,-124.2360115295948,-122.5009999999925,-92.08400000000209],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["723930 <br>RH: 94.3636249987444 %","724737 <br>RH: 92.6270012559612 %","720649 <br>RH: 92.3242572879945 %","724395 <br>RH: 91.3154238104235 %","726436 <br>RH: 91.1056563028225 %","726130 <br>RH: 90.872871367105 %","725513 <br>RH: 90.81298092204 %","725946 <br>RH: 90.6755455433979 %","720646 <br>RH: 90.1972552804271 %","720587 <br>RH: 89.8502291773459 %"],null,null,null,["723930","724737","720649","724395","726436","726130","725513","725946","720646","720587"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[24.55554445385292,48.94100000000212],"lng":[-124.2899999999979,-68.31299999999992]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="moderate-to-high-rh-in-the-central-u.s-lower-rh-in-the-western-u.s-and-higher-rh-in-the-eastern-and-southeastern-u.s." class="level1">
+<h1>Moderate to High RH in the Central U.S, Lower RH in the Western U.S and Higher RH in the Eastern and Southeastern U.S.</h1>
+<p>#Question 8</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(met_avg, <span class="fu">aes</span>(<span class="at">x =</span> wind.sp, <span class="at">y =</span> rh, <span class="at">color =</span> region)) <span class="sc">+</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Scatter Plot of Wind Speed vs. Relative Humidity by Region"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wind Speed "</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Relative Humidity "</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span>  </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-4_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(met_avg, <span class="fu">aes</span>(<span class="at">x =</span> wind.sp, <span class="at">color =</span> region, <span class="at">fill =</span> region)) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Add density with transparency</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Density Plot of Wind Speed by Region"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wind Speed"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-4_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 136
+ $ line                            :List of 6
+  ..$ colour       : chr "black"
+  ..$ linewidth    : num 0.5
+  ..$ linetype     : num 1
+  ..$ lineend      : chr "butt"
+  ..$ arrow        : logi FALSE
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_line" "element"
+ $ rect                            :List of 5
+  ..$ fill         : chr "white"
+  ..$ colour       : chr "black"
+  ..$ linewidth    : num 0.5
+  ..$ linetype     : num 1
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+ $ text                            :List of 11
+  ..$ family       : chr ""
+  ..$ face         : chr "plain"
+  ..$ colour       : chr "black"
+  ..$ size         : num 11
+  ..$ hjust        : num 0.5
+  ..$ vjust        : num 0.5
+  ..$ angle        : num 0
+  ..$ lineheight   : num 0.9
+  ..$ margin       : 'margin' num [1:4] 0points 0points 0points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : logi FALSE
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ title                           : NULL
+ $ aspect.ratio                    : NULL
+ $ axis.title                      : NULL
+ $ axis.title.x                    :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : NULL
+  ..$ vjust        : num 1
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 2.75points 0points 0points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.title.x.top                :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : NULL
+  ..$ vjust        : num 0
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 0points 2.75points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.title.x.bottom             : NULL
+ $ axis.title.y                    :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : NULL
+  ..$ vjust        : num 1
+  ..$ angle        : num 90
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 2.75points 0points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.title.y.left               : NULL
+ $ axis.title.y.right              :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : NULL
+  ..$ vjust        : num 1
+  ..$ angle        : num -90
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.75points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.text                       :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : chr "grey30"
+  ..$ size         : 'rel' num 0.8
+  ..$ hjust        : NULL
+  ..$ vjust        : NULL
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : NULL
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.text.x                     :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : NULL
+  ..$ vjust        : num 1
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 2.2points 0points 0points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.text.x.top                 :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : NULL
+  ..$ vjust        : num 0
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 0points 2.2points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.text.x.bottom              : NULL
+ $ axis.text.y                     :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : num 1
+  ..$ vjust        : NULL
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 0points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.text.y.left                : NULL
+ $ axis.text.y.right               :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : num 0
+  ..$ vjust        : NULL
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.2points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.text.theta                 : NULL
+ $ axis.text.r                     :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : num 0.5
+  ..$ vjust        : NULL
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 2.2points
+  .. ..- attr(*, "unit")= int 8
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ axis.ticks                      : list()
+  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+ $ axis.ticks.x                    : NULL
+ $ axis.ticks.x.top                : NULL
+ $ axis.ticks.x.bottom             : NULL
+ $ axis.ticks.y                    : NULL
+ $ axis.ticks.y.left               : NULL
+ $ axis.ticks.y.right              : NULL
+ $ axis.ticks.theta                : NULL
+ $ axis.ticks.r                    : NULL
+ $ axis.minor.ticks.x.top          : NULL
+ $ axis.minor.ticks.x.bottom       : NULL
+ $ axis.minor.ticks.y.left         : NULL
+ $ axis.minor.ticks.y.right        : NULL
+ $ axis.minor.ticks.theta          : NULL
+ $ axis.minor.ticks.r              : NULL
+ $ axis.ticks.length               : 'simpleUnit' num 2.75points
+  ..- attr(*, "unit")= int 8
+ $ axis.ticks.length.x             : NULL
+ $ axis.ticks.length.x.top         : NULL
+ $ axis.ticks.length.x.bottom      : NULL
+ $ axis.ticks.length.y             : NULL
+ $ axis.ticks.length.y.left        : NULL
+ $ axis.ticks.length.y.right       : NULL
+ $ axis.ticks.length.theta         : NULL
+ $ axis.ticks.length.r             : NULL
+ $ axis.minor.ticks.length         : 'rel' num 0.75
+ $ axis.minor.ticks.length.x       : NULL
+ $ axis.minor.ticks.length.x.top   : NULL
+ $ axis.minor.ticks.length.x.bottom: NULL
+ $ axis.minor.ticks.length.y       : NULL
+ $ axis.minor.ticks.length.y.left  : NULL
+ $ axis.minor.ticks.length.y.right : NULL
+ $ axis.minor.ticks.length.theta   : NULL
+ $ axis.minor.ticks.length.r       : NULL
+ $ axis.line                       : list()
+  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+ $ axis.line.x                     : NULL
+ $ axis.line.x.top                 : NULL
+ $ axis.line.x.bottom              : NULL
+ $ axis.line.y                     : NULL
+ $ axis.line.y.left                : NULL
+ $ axis.line.y.right               : NULL
+ $ axis.line.theta                 : NULL
+ $ axis.line.r                     : NULL
+ $ legend.background               : list()
+  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+ $ legend.margin                   : 'margin' num [1:4] 5.5points 5.5points 5.5points 5.5points
+  ..- attr(*, "unit")= int 8
+ $ legend.spacing                  : 'simpleUnit' num 11points
+  ..- attr(*, "unit")= int 8
+ $ legend.spacing.x                : NULL
+ $ legend.spacing.y                : NULL
+ $ legend.key                      : list()
+  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+ $ legend.key.size                 : 'simpleUnit' num 1.2lines
+  ..- attr(*, "unit")= int 3
+ $ legend.key.height               : NULL
+ $ legend.key.width                : NULL
+ $ legend.key.spacing              : 'simpleUnit' num 5.5points
+  ..- attr(*, "unit")= int 8
+ $ legend.key.spacing.x            : NULL
+ $ legend.key.spacing.y            : NULL
+ $ legend.frame                    : NULL
+ $ legend.ticks                    : NULL
+ $ legend.ticks.length             : 'rel' num 0.2
+ $ legend.axis.line                : NULL
+ $ legend.text                     :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : 'rel' num 0.8
+  ..$ hjust        : NULL
+  ..$ vjust        : NULL
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : NULL
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ legend.text.position            : NULL
+ $ legend.title                    :List of 11
+  ..$ family       : NULL
+  ..$ face         : NULL
+  ..$ colour       : NULL
+  ..$ size         : NULL
+  ..$ hjust        : num 0
+  ..$ vjust        : NULL
+  ..$ angle        : NULL
+  ..$ lineheight   : NULL
+  ..$ margin       : NULL
+  ..$ debug        : NULL
+  ..$ inherit.blank: logi TRUE
+  ..- attr(*, "class")= chr [1:2] "element_text" "element"
+ $ legend.title.position           : NULL
+ $ legend.position                 : chr "bottom"
+ $ legend.position.inside          : NULL
+ $ legend.direction                : NULL
+ $ legend.byrow                    : NULL
+ $ legend.justification            : chr "center"
+ $ legend.justification.top        : NULL
+ $ legend.justification.bottom     : NULL
+ $ legend.justification.left       : NULL
+ $ legend.justification.right      : NULL
+ $ legend.justification.inside     : NULL
+ $ legend.location                 : NULL
+ $ legend.box                      : NULL
+ $ legend.box.just                 : NULL
+ $ legend.box.margin               : 'margin' num [1:4] 0cm 0cm 0cm 0cm
+  ..- attr(*, "unit")= int 1
+ $ legend.box.background           : list()
+  ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+ $ legend.box.spacing              : 'simpleUnit' num 11points
+  ..- attr(*, "unit")= int 8
+  [list output truncated]
+ - attr(*, "class")= chr [1:2] "theme" "gg"
+ - attr(*, "complete")= logi TRUE
+ - attr(*, "validate")= logi TRUE</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

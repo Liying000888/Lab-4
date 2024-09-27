@@ -1,0 +1,162 @@
+---
+title: "lab 4"
+format: html
+editor: visual
+---
+#Name: Liying Deng
+
+```{r}
+library(tidyverse)
+library(data.table)
+library(leaflet)
+library(dplyr)
+```
+#Question 1
+```{r}
+if (!file.exists("met_all.gz"))
+  download.file(
+    url = "https://raw.githubusercontent.com/USCbiostats/data-science-data/master/02_met/met_all.gz",
+    destfile = "met_all.gz",
+    method   = "libcurl",
+    timeout  = 60
+    )
+met <- data.table::fread("met_all.gz")
+```
+
+#Question 2
+```{r}
+met <- met[met$temp > -17, ]
+met[met$elev==9999.0, ] <- NA
+library(lubridate)
+met[,date:= as.Date(paste(year, month, day, sep= "-"))]
+met_avg <- met[,.(
+  temp     = mean(temp,na.rm=TRUE),
+  rh       = mean(rh,na.rm=TRUE),
+  wind.sp  = mean(wind.sp,na.rm=TRUE),
+  vis.dist = mean(vis.dist,na.rm=TRUE),
+  dew.point = mean(dew.point, na.rm = T),
+  lat      = mean(lat),
+  lon      = mean(lon), 
+  elev     = mean(elev,na.rm=TRUE)
+), by=c("USAFID")]
+met_avg[, region := fifelse(lon < -98 & lat >= 39.71, "NW",   
+               fifelse(lon < -98 & lat < 39.71, "SW",       
+               fifelse(lon >= -98 & lat >= 39.71, "NE",     
+                       "SE")))]  
+met_avg[, elev_cat  := cut(
+  x      = elev,
+  breaks = c(-Inf, 0, 1500, 3000, Inf),
+  labels = c("low", "med", "high", "very high"),
+  right  = FALSE
+)]
+```
+
+#Question 3
+```{r}
+met_avg <- met_avg [!is.na(wind.sp)&!is.na(dew.point)]
+ggplot(met_avg)+
+  geom_violin(aes(x=1, y=wind.sp, fill="wind.sp"))+
+  geom_violin(aes(x=1, y=dew.point, fill="dew.point"))+
+  facet_grid(~region)
+```
+# Each region exhibits distinct characteristics, leading to variations in wind speed. The Southwest region, in particular, has significantly higher dew point levels compared to other regions, with a relatively large range of variation.
+
+#Question 4
+```{r}
+met_avg[!is.na(wind.sp)&!is.na(dew.point)] |>
+  ggplot(mapping = aes(x = dew.point, y = wind.sp, color = region, linetype = region)) +
+  geom_point() + 
+  geom_smooth(method = lm, se = FALSE, col = "Blue")
+```
+#The dew point increases, the wind speed tends to remain relatively constant or decrease slightly
+
+#Question 5
+```{r}
+met_avg[!is.na(elev_cat) & elev_cat != "clear"] |>
+  ggplot() + 
+  geom_bar(mapping = aes(x = elev_cat, fill = region), position = "dodge")+
+  scale_fill_viridis_d()+
+  labs(title="the weather stations by elevation category",
+        x='elev_cat',
+        y="number of weather stations",
+       fill="Region")+
+  theme_minimal()
+```
+#The graph reveals a clear preference for placing weather stations at medium elevations across all regions, particularly in the NW and SE regions.
+
+#Question 6
+```{r}
+met_avg[!is.na(elev_cat) & elev_cat != "clear"] |>
+  ggplot() + 
+    stat_summary(mapping = aes(x = region, y = dew.point,fill="dew.point"),
+      fun.data = "mean_sdl",
+      geom ="bar")+
+    stat_summary(mapping = aes(x = region, y = dew.point,fill="dew.point"),
+      fun.data = "mean_sdl",
+      geom ="errorbar")+
+    stat_summary(mapping = aes(x = region, y = wind.sp,fill="wind.sp"),
+      fun.data = "mean_sdl",
+      geom ="bar")+
+    stat_summary(mapping = aes(x = region, y = wind.sp,fill="wind.sp"),
+      fun.data = "mean_sdl",
+      geom ="errorbar")+
+    labs(title="Mean Dew point and wind speed by region",
+      x="Region",
+      y="mean value")+
+    theme_minimal()
+```
+#The SE region exhibits the highest humidity levels, while the NW region is notably drier and calmer. 
+
+#Question 7
+```{r}
+pal <- colorNumeric(
+  palette = "YlGnBu",
+  domain = met_avg$rh,
+)
+rhmap <- leaflet(met_avg) |> 
+  addProviderTiles('CartoDB.Positron') |> 
+  addCircles(
+    lat = ~lat, lng=~lon,
+    label = ~paste0(round(rh,2), ' C'), color = ~pal(rh),
+    opacity = 1, fillOpacity =1, radius = 5
+    ) |>
+  addLegend('bottomleft', pal=pal, values=met_avg$rh,
+          title='Relative Humidity', opacity=1)
+top_10 <- met_avg %>%
+    arrange(desc(rh)) %>%
+    slice(1:10)
+rhmap <- rhmap %>%
+    addMarkers(
+        data = top_10,
+        ~lon, ~lat,
+        popup = ~paste(USAFID, "<br>RH:", rh, "%"),
+        label = ~USAFID
+    )
+rhmap
+```
+# Moderate to High RH in the Central U.S, Lower RH in the Western U.S and Higher RH in the Eastern and Southeastern U.S.
+
+#Question 8
+```{r}
+ggplot(met_avg, aes(x = wind.sp, y = rh, color = region)) + 
+  geom_point(alpha = 0.6, size = 2) +
+  labs(
+    title = "Scatter Plot of Wind Speed vs. Relative Humidity by Region",
+    x = "Wind Speed ",
+    y = "Relative Humidity "
+  ) +
+  theme_minimal() +  
+  theme(legend.position = "bottom") 
+ggplot(met_avg, aes(x = wind.sp, color = region, fill = region)) + 
+  geom_density(alpha = 0.5) +  # Add density with transparency
+  labs(
+    title = "Density Plot of Wind Speed by Region",
+    x = "Wind Speed",
+    y = "Density"
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05)))
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+
